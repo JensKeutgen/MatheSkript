@@ -1,0 +1,142 @@
+/* Grundlegende Stile */
+:root {
+    --primary-color: #0056b3; /* Ein zugängliches Blau */
+    --secondary-color: #007bff;
+    --light-bg: #ffffff;
+    --medium-bg: #f8f9fa;
+    --dark-bg: #e9ecef;
+    --text-color: #343a40;
+    --text-light: #6c757d;
+    --border-color: #dee2e6;
+    --info-bg: #e7f5ff; /* Hellblau für Info */
+    --info-border: #007bff;
+}
+
+html {
+    scroll-behavior: smooth; /* Aktiviert sanftes Scrollen */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    transition: margin-left .3s;
+}
+
+header, footer {
+    background-color: var(--medium-bg);
+    padding: 1em 2em;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-light);
+}
+header h1 { margin-bottom: 0.2em; color: var(--primary-color); }
+footer { border-top: 1px solid var(--border-color); border-bottom: none; margin-top: 3em; font-size: 0.9em; }
+
+main {
+    max-width: 850px;
+    margin: 2em auto;
+    padding: 0 1em;
+    transition: margin-left .3s;
+    padding-left: 2em; /* Platz für Button */
+}
+
+h1, h2, h3 { color: var(--primary-color); margin-top: 1.8em; margin-bottom: 0.6em; font-weight: 600; }
+h1 { font-size: 2em; border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.3em; }
+h2 { font-size: 1.6em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.2em; }
+h3 { font-size: 1.3em; color: #495057; }
+
+strong { font-weight: 600; } /* Etwas stärker */
+code { background-color: #e9ecef; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+
+/* Infobox */
+.infobox {
+    background-color: var(--info-bg);
+    border-left: 5px solid var(--info-border);
+    padding: 12px 18px;
+    margin: 1.5em 0;
+    border-radius: 4px;
+}
+.infobox strong { color: var(--info-border); }
+
+/* Tooltip */
+.tooltip { position: relative; display: inline-block; border-bottom: 1px dotted var(--secondary-color); cursor: help; }
+.tooltip .tooltiptext { visibility: hidden; width: 180px; background-color: #333; color: #fff; text-align: center; border-radius: 6px; padding: 6px 10px; position: absolute; z-index: 1; bottom: 130%; left: 50%; margin-left: -90px; opacity: 0; transition: opacity 0.3s; font-size: 0.9em; font-weight: normal; border-bottom: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+.tooltip .tooltiptext::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #333 transparent transparent transparent; }
+.tooltip:hover .tooltiptext, .tooltip:focus .tooltiptext { visibility: visible; opacity: 1; }
+
+/* Tabelle (z.B. Vierfeldertafel) */
+table {
+    border-collapse: collapse;
+    margin: 1em 0;
+    width: auto; /* Oder 100% */
+    border: 1px solid var(--border-color);
+}
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    text-align: center;
+}
+th {
+    background-color: var(--medium-bg);
+    font-weight: bold;
+}
+tbody tr:nth-child(odd) { background-color: var(--light-bg); }
+tbody tr:nth-child(even) { background-color: var(--medium-bg); }
+
+/* Baumdiagramm Beschreibung (einfach) */
+.baum-diagramm-beschreibung {
+    border: 1px dashed #ccc;
+    padding: 1em;
+    background-color: #fafafa;
+    font-size: 0.95em;
+}
+.baum-diagramm-beschreibung ul { padding-left: 20px; }
+
+
+/* Sidebar */
+#sidebar { height: 100%; width: 280px; /* Breiter */ position: fixed; z-index: 1000; top: 0; left: 0; background-color: var(--medium-bg); border-right: 1px solid var(--border-color); overflow-y: auto; /* Scrollbar wenn nötig */ padding-top: 60px; transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
+#sidebar.sidebar-open { transform: translateX(0); }
+#sidebar nav h3 { padding: 15px 20px; margin: 0; color: #333; border-bottom: 1px solid var(--border-color); font-size: 1.1em; }
+#sidebar nav ul { list-style: none; padding: 0; margin: 0; }
+#sidebar nav ul li a { display: block; padding: 10px 20px; text-decoration: none; color: var(--primary-color); transition: background-color 0.2s ease; border-bottom: 1px solid #eee; font-size: 0.95em; }
+#sidebar nav ul li a:hover { background-color: var(--dark-bg); }
+#sidebar nav ul li strong a { /* Hauptteil-Links */ font-weight: bold; color: var(--text-color); background-color: var(--dark-bg); font-size: 1em; }
+
+/* Menu Toggle Button */
+#menu-toggle { position: fixed; top: 15px; left: 15px; z-index: 1001; background-color: var(--medium-bg); border: 1px solid #ccc; padding: 8px 12px; cursor: pointer; font-size: 1.3em; border-radius: 4px; transition: left 0.3s ease-in-out, background-color 0.2s ease; }
+#menu-toggle:hover { background-color: var(--dark-bg); }
+
+/* Overlay */
+#overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 999; display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
+#overlay.active { display: block; opacity: 1; }
+
+/* Ausklappbare Abschnitte */
+.collapsible-header { cursor: pointer; position: relative; padding-right: 30px; transition: background-color 0.2s ease; user-select: none; /* Verhindert Textauswahl beim Klicken */ }
+.collapsible-header:hover { background-color: #f0f0f0; }
+.collapsible-header::after { content: '+'; color: var(--secondary-color); font-weight: bold; position: absolute; right: 10px; top: 50%; transform: translateY(-50%) scale(1.2); transition: transform 0.2s ease-out; }
+.collapsible-header.active::after { content: "–"; /* Minus statt Strich */ transform: translateY(-50%) scale(1.2) rotate(0deg); }
+
+.section-content { padding: 0 18px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out, border 0.4s ease-out; border-bottom: 0px solid transparent; /* Initial keine Border */ }
+.section-content.open { padding: 15px 18px; /* Mehr Padding */ border-bottom: 1px dashed var(--border-color); /* Border wenn offen */ /* max-height wird durch JS gesetzt */ }
+
+.nested-collapsible { /* ... wie vorher ... */ }
+.nested-collapsible + .collapsible-content { /* ... wie vorher ... */ }
+.plotly-chart { width: 100%; min-height: 400px; margin: 1.5em 0; }
+
+/* Responsive Design */
+@media (min-width: 900px) { /* Breiterer Schwellenwert für Push */
+    body.sidebar-active { margin-left: 280px; }
+    main.sidebar-active { margin-left: calc(50% - 425px + 140px); } /* Zentrierung anpassen */
+    #menu-toggle.sidebar-active { left: calc(15px + 280px); }
+    #overlay { display: none !important; }
+}
+
+@media (max-width: 899px) {
+    main { padding-left: 1em; width: auto; max-width: none; margin: 1em auto; }
+    #sidebar.sidebar-open { box-shadow: 3px 0 6px rgba(0,0,0,0.2); }
+    .plotly-chart { min-height: 350px; } /* Etwas kleiner auf Mobile */
+}

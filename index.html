@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktives Skript für Gestalter</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- MathJax Konfiguration und Laden -->
+    <script>
+        MathJax = {
+          tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+          svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+    <!-- Plotly Laden (Aktuelle Version) -->
+    <script src='https://cdn.plot.ly/plotly-2.32.0.min.js' charset='utf-8'></script>
+</head>
+<body>
+
+    <button id="menu-toggle" aria-label="Menü öffnen/schließen" aria-expanded="false">☰</button>
+
+    <aside id="sidebar">
+        <nav>
+            <h3>Inhaltsverzeichnis</h3>
+            <ul>
+                <li><strong><a href="#teil1">Teil I: Funktionen</a></strong></li>
+                <li><a href="#definition">Definition & Beispiele</a></li>
+                <li><a href="#funktionswerte">Funktionswerte</a></li>
+                <li><a href="#nullstellen">Nullstellen</a></li>
+                <li><a href="#finden_x_zu_y">Finde x zu y</a></li>
+                <li><a href="#ableitungen">Ableitungen</a></li>
+                <li><a href="#extrempunkte">Extrempunkte</a></li>
+                <li><a href="#wendepunkte">Wendepunkte</a></li>
+                <li><a href="#integrale">Integrale</a></li>
+                <li><a href="#steckbrief">Steckbriefaufgaben</a></li>
+
+                <li><strong><a href="#teil2">Teil II: Vektorrechnung</a></strong></li>
+                <li><a href="#punkte3d">Punkte im 3D-Raum</a></li>
+                <li><a href="#vektoren_verschiebung">Vektoren & Verschiebung</a></li>
+                <li><a href="#vektorlaenge">Vektorlänge (Betrag)</a></li>
+                <li><a href="#skalarprodukt">Skalarprodukt</a></li>
+                <li><a href="#winkel">Winkel zwischen Vektoren</a></li>
+                <li><a href="#geraden">Geradengleichung</a></li>
+                <li><a href="#lage_punkt_gerade">Lage: Punkt/Gerade</a></li>
+                <li><a href="#lage_gerade_gerade">Lage: Gerade/Gerade</a></li>
+                <li><a href="#vektor_aufgaben">Vertiefende Aufgaben</a></li>
+
+                <li><strong><a href="#teil3">Teil III: Stochastik</a></strong></li>
+                <li><a href="#baumdiagramm">Baumdiagramm</a></li>
+                <li><a href="#vierfeldertafel">Vierfeldertafel</a></li>
+                <li><a href="#bayes">Satz von Bayes</a></li>
+                <li><a href="#binomialkoeffizient">Binomialkoeffizient</a></li>
+                <li><a href="#binomialdichte">Binomialdichte</a></li>
+                <li><a href="#kumulierte_binomial">Kumulierte Binomialdichte</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div id="overlay"></div>
+
+    <main>
+        <header>
+            <h1>Mathematische Grundlagen für Gestalter</h1>
+            <p>Ein interaktives Skript zu Funktionen, Vektorrechnung und Stochastik</p>
+        </header>
+
+        <!-- ==================================================== -->
+        <!-- TEIL I: FUNKTIONEN                                     -->
+        <!-- ==================================================== -->
+               <article id="teil1">
+            <h1>Teil I: Ganzrationale Funktionen</h1>
+            <p>Ganzrationale Funktionen (Polynomfunktionen) sind mathematische Werkzeuge, die häufig verwendet werden, um Kurven und Formen zu beschreiben. Im Bereich der Gestaltung können sie eingesetzt werden, um Profile von Objekten (z.B. Vasen, Möbel), Übergänge zwischen Designelementen oder auch dynamische Prozesse (z.B. Farbübergänge) zu modellieren. Ebenso lassen sich Trends in Nutzerzahlen von Social-Media-Plattformen oder Websites oft näherungsweise durch solche Funktionen beschreiben. Dieser Teil behandelt die Grundlagen ganzrationaler Funktionen bis zum Grad 4 und deren Anwendung, wobei betont wird, an welchen Stellen der Taschenrechner <strong>[TR]</strong> zur Vereinfachung der Berechnungen eingesetzt wird.</p>
+
+            <section id="definition">
+                <h2>Definition und Beispiele</h2>
+                <h3>Erklärung</h3>
+                <p>Eine <span class="tooltip" tabindex="0"><strong>ganzrationale Funktion</strong><span class="tooltiptext">Auch Polynomfunktion genannt. Eine Funktion, deren Term eine Summe von Vielfachen von Potenzen von x ist.</span></span> oder <strong>Polynomfunktion</strong> \(n\)-ten Grades hat die allgemeine Form:</p>
+                <p>\[f(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_2 x^2 + a_1 x + a_0\]</p>
+                <p>Dabei sind \(a_n, a_{n-1}, \dots, a_0\) reelle Zahlen, die <span class="tooltip" tabindex="0"><strong>Koeffizienten</strong><span class="tooltiptext">Die Zahlen, die vor den Potenzen von x stehen (z.B. a_n, a_{n-1}, ...).</span></span> genannt werden, und \(a_n \neq 0\). Der <span class="tooltip" tabindex="0"><strong>Grad</strong><span class="tooltiptext">Der höchste vorkommende Exponent von x in der Funktion (hier n).</span></span> der Funktion ist der höchste Exponent von \(x\) (hier \(n\)). In diesem Skript betrachten wir Funktionen bis zum Grad 4 (\(n \le 4\)).</p>
+                <p>\[f(x) = ax^4 + bx^3 + cx^2 + dx + e\]</p>
+                <p>Der Graph einer ganzrationalen Funktion ist immer eine glatte, ununterbrochene Kurve.</p>
+
+                <div class="infobox">
+                    <p><strong>💡 Was ist eine ganzrationale Funktion?</strong></p>
+                    <p>Eine ganzrationale Funktion ist eine Funktion, deren Term sich als Summe von Potenzen von \(x\) mit zugehörigen Koeffizienten schreiben lässt. Der höchste Exponent von \(x\) bestimmt den Grad der Funktion. Sie erzeugen glatte Kurven ohne Sprünge oder Knicke.</p>
+                    <ul>
+                        <li>Beispiel Grad 3: \(f(x) = 2x^3 - 5x + 1\)</li>
+                        <li>Beispiel Grad 4: \(f(x) = -0.5x^4 + 3x^2\)</li>
+                    </ul>
+                </div>
+
+                <h3>Beispiel (Gestaltung)</h3>
+                <p>Ein Designer entwirft das seitliche Profil einer modernen Liege. Der obere Rand soll durch eine Funktion beschrieben werden. Er wählt eine Funktion 4. Grades, um genügend Flexibilität für die Form zu haben:</p>
+                <p>\[f(x) = -0.01x^4 + 0.1x^3 - 0.2x^2 + 1.5\]</p>
+                <p>Hier ist \(a = -0.01\), \(b = 0.1\), \(c = -0.2\), \(d = 0\) und \(e = 1.5\). Der Grad ist 4. Die Variable \(x\) könnte die horizontale Position entlang der Liege repräsentieren (z.B. in Dezimetern) und \(f(x)\) die Höhe an dieser Position.</p>
+                <div id="plotLiegeProfil" class="plotly-chart"></div>
+                <p>Koeffizienten: \(a = -0.01, b = 0.1, c = -0.2, d = 0, e = 1.5\). Grad 4.</p>
+
+
+                <h3>Beispiel (Social Media)</h3>
+                <p>Ein Social-Media-Analyst modelliert die Anzahl der täglichen Besucher \(V(x)\) (in Tausend) auf einer neuen Website über die ersten 10 Tage (\(x\) ist der Tag nach dem Launch, \(x \in [0, 10]\)) mit einer Funktion 3. Grades:</p>
+                <p>\[V(x) = -0.1x^3 + 1.5x^2 + 0.5x + 2\]</p>
+                <p>Hier ist \(a = -0.1\), \(b = 1.5\), \(c = 0.5\) und \(d = 2\). Der Grad ist 3. Der Koeffizient \(d=2\) repräsentiert die anfängliche Besucherzahl (2000 Besucher an Tag 0).</p>
+                <div id="plotBesucher" class="plotly-chart"></div>
+
+                <h3>Aufgaben</h3>
+                <ol>
+                    <li>Gegeben ist die Funktion \(g(x) = 0.5x^3 - 2x + 1\), die den Querschnitt eines Design-Griffs beschreibt. Bestimme den Grad und die Koeffizienten der Funktion. Skizziere den erwarteten groben Verlauf (Verhalten für \(x \to \pm \infty\)).</li>
+                    <li>Ein Landschaftsdesigner modelliert ein sanftes Hügelprofil mit \(h(x) = -0.05x^4 + 0.5x^2 + 0.5\) für \(x \in [-3, 3]\). Welchen Grad hat die Funktion? Gib die Koeffizienten an.</li>
+                    <li>Die Anzahl der Likes \(L(t)\) (in Hundert) für einen Social-Media-Post in den ersten 8 Stunden (\(t\) in Stunden) wird modelliert durch \(L(t) = -0.05t^3 + 0.6t^2 + 0.1t\). Welchen Grad hat die Funktion? Gib die Koeffizienten an. Was bedeutet es, dass der konstante Koeffizient (analog zu \(e\) oder \(d\)) hier Null ist?</li>
+                </ol>
+            </section>
+
+            <section id="funktionswerte">
+                <h2>Bestimmung von Funktionswerten</h2>
+                <h3>Erklärung</h3>
+                <p>Der <span class="tooltip" tabindex="0"><strong>Funktionswert</strong><span class="tooltiptext">Der y-Wert f(x₀) für ein gegebenes x₀. Ergebnis des Einsetzens von x₀ in f(x).</span></span> \(f(x_0)\) ist der Wert der Funktion \(f\) an einer bestimmten Stelle \(x_0\). Man erhält ihn, indem man \(x_0\) für jedes \(x\) in die Funktionsgleichung einsetzt. Im Kontext der Gestaltung gibt der Funktionswert oft eine Höhe, Breite oder eine andere Eigenschaft des Objekts an einer bestimmten Position an. Im Social-Media-Kontext ist es oft ein Zählwert (Besucher, Likes) zu einem bestimmten Zeitpunkt.</p>
+
+                <div class="infobox">
+                     <p><strong>💡 Was ist ein Funktionswert?</strong></p>
+                     <p>Der y-Wert \(f(x_0)\) für ein gegebenes \(x_0\). Wird durch Einsetzen von \(x_0\) in die Funktionsgleichung berechnet.<br> Beispiel: Für \(f(x)=x^2+1\) ist \(f(3) = 3^2+1 = 10\). Der Punkt \((3 | 10)\) liegt auf dem Graphen.</p>
+                 </div>
+
+                <h3>Beispiel (Gestaltung)</h3>
+                <p>Wie hoch ist das Liegenprofil \(f(x) = -0.01x^4 + 0.1x^3 - 0.2x^2 + 1.5\) an der Position \(x=5\)?<br>
+                Wir berechnen \(f(5)\):</p>
+                <p>\[f(5) = -0.01(5)^4 + 0.1(5)^3 - 0.2(5)^2 + 1.5\]</p>
+                <p>\[f(5) = -0.01(625) + 0.1(125) - 0.2(25) + 1.5\]</p>
+                <p>\[f(5) = -6.25 + 12.5 - 5 + 1.5 = 2.75\]</p>
+                <p>An der Position \(x=5\) ist die Liege 2.75 Dezimeter hoch. <span class="tooltip" tabindex="0">(Siehe Punkt im Graphen oben!)<span class="tooltiptext">Fahre mit der Maus über den Graphen des Liegenprofils bei x=5 oder zoome hinein, um den Wert zu sehen.</span></span></p>
+
+                <h3>Beispiel (Social Media)</h3>
+                <p>Wie viele Besucher wurden am 7. Tag nach dem Launch erwartet (\(x=7\)) für \(V(x) = -0.1x^3 + 1.5x^2 + 0.5x + 2\)?<br>
+                Wir berechnen \(V(7)\):</p>
+                <p>\[V(7) = -0.1(7)^3 + 1.5(7)^2 + 0.5(7) + 2\]</p>
+                <p>\[V(7) = -0.1(343) + 1.5(49) + 3.5 + 2\]</p>
+                <p>\[V(7) = -34.3 + 73.5 + 3.5 + 2 = 44.7\]</p>
+                <p>Am 7. Tag wurden 44.7 Tausend (also 44700) Besucher erwartet.</p>
+
+                <h3>Aufgaben</h3>
+                <ol>
+                    <li>Für den Design-Griff \(g(x) = 0.5x^3 - 2x + 1\): Bestimme die Höhe des Griffs an den Stellen \(x=-1\), \(x=0\) und \(x=2\).</li>
+                    <li>Für das Hügelprofil \(h(x) = -0.05x^4 + 0.5x^2 + 0.5\): Wie hoch ist der Hügel an der Position \(x=2\)?</li>
+                    <li>Für die Likes-Funktion \(L(t) = -0.05t^3 + 0.6t^2 + 0.1t\) (in Hundert Likes, \(t\) in Stunden): Wie viele Likes (absolut) hat der Post nach \(t=2\) Stunden und nach \(t=6\) Stunden?</li>
+                </ol>
+            </section>
+
+             <section id="nullstellen">
+                <h2>Bestimmung von Nullstellen (<strong>[TR]</strong>)</h2>
+                 <h3>Erklärung</h3>
+                 <p><span class="tooltip" tabindex="0"><strong>Nullstellen</strong><span class="tooltiptext">Die x-Werte, für die f(x)=0 ist. Schnittpunkte mit der x-Achse.</span></span> einer Funktion \(f(x)\) sind die \(x\)-Werte, für die \(f(x) = 0\) gilt. Grafisch entsprechen sie den Schnittpunkten des Graphen mit der \(x\)-Achse. Im Designkontext können Nullstellen z.B. angeben, wo ein Profil auf eine Basislinie trifft. Im Social-Media-Kontext kann eine Nullstelle z.B. den Zeitpunkt angeben, an dem eine Zählrate (wie Nettogewinn an Followern) wieder auf Null fällt oder eine Kennzahl (z.B. Zufriedenheit, Profit) den Nullpunkt kreuzt.<br>
+                 Die Bestimmung von Nullstellen erfordert das Lösen der Gleichung \(f(x) = 0\). Für Polynome vom Grad 3 oder 4 ist dies analytisch oft schwierig. Daher verwenden wir hierfür direkt den <strong>Taschenrechner</strong> <strong>[TR]</strong>.</p>
+
+                 <div class="infobox">
+                    <p><strong>💡 Was sind Nullstellen?</strong></p>
+                    <p>Nullstellen sind die x-Werte (\(x_N\)), bei denen der Graph einer Funktion die x-Achse schneidet oder berührt. An diesen Stellen ist der Funktionswert \(f(x_N)\) gleich Null.<br>
+                    <strong>Finden:</strong> Man löst die Gleichung \(f(x)=0\). Für Polynome ab Grad 3 benutzt man am besten den Taschenrechner <strong>[TR]</strong> (Funktion "Gleichungslöser" oder "Polynomwurzeln").</p>
+                 </div>
+
+                 <h3>Beispiel (Gestaltung)</h3>
+                 <p>Ein Designer entwirft eine geschwungene Bodenleuchte, deren Profil durch \(k(x) = x^3 - 6x^2 + 9x\) beschrieben wird, wobei \(x=0\) dem Fuß der Leuchte entspricht. Wo trifft das Profil (außer am Fuß) wieder auf die Bodenebene (d.h., wo ist \(k(x)=0\))?<br>
+                 Wir setzen \(k(x) = 0\):</p>
+                 <p>\[x^3 - 6x^2 + 9x = 0\]</p>
+                 <p>Diese Gleichung wird mit dem Taschenrechner <strong>[TR]</strong> gelöst. Man gibt die Koeffizienten (1, -6, 9, 0 für \(ax^3+bx^2+cx+d=0\)) in die entsprechende Funktion des TR ein.<br>
+                 Der TR liefert die Lösungen \(x_1 = 0\) und \(x_2 = 3\). (Die Lösung \(x=3\) ist eine doppelte Nullstelle).<br>
+                 Das Profil trifft also bei \(x=0\) und \(x=3\) auf die Bodenebene.</p>
+                 <div id="plotBodenleuchteNullstellen" class="plotly-chart"></div>
+
+                 <h3>Beispiel (Social Media)</h3>
+                 <p>Ein Modell beschreibt den täglichen Netto-Zuwachs an Followern \(N(x)\) einer Kampagne über 10 Tage (\(x\) ist der Tag) durch:</p>
+                 <p>\[N(x) = -x^3 + 9x^2 - 15x\]</p>
+                 <p>An welchen Tagen war der Netto-Zuwachs gleich Null? Wir lösen \(N(x)=0\):</p>
+                 <p>\[-x^3 + 9x^2 - 15x = 0\]</p>
+                 <p>Wir verwenden den Taschenrechner <strong>[TR]</strong>.<br>
+                 Der TR liefert die Lösungen \(x_1 = 0\), \(x_2 \approx 1.88\) und \(x_3 \approx 7.12\).<br>
+                 Am Starttag (\(x=0\)) sowie ungefähr an den Tagen \(x \approx 1.88\) und \(x \approx 7.12\) war der Netto-Zuwachs Null.</p>
+
+                 <h3>Aufgaben</h3>
+                 <ol>
+                    <li>Bestimme die Nullstellen des Liegenprofils \(f(x) = -0.01x^4 + 0.1x^3 - 0.2x^2 + 1.5\). Verwende dazu den Taschenrechner <strong>[TR]</strong>. Interpretiere das Ergebnis im Kontext (falls es relevante Nullstellen im positiven Bereich gibt, wo trifft die Liege den Boden?).</li>
+                    <li>Finde die Nullstellen der Funktion \(p(x) = x^4 - 5x^2 + 4\), die ein symmetrisches Designelement beschreibt. Nutze den Taschenrechner <strong>[TR]</strong> (oder Substitution \(z=x^2\)).</li>
+                    <li>Die Popularität eines Online-Artikels (gemessen als 'Score' \(S(t)\) über Zeit \(t\) in Wochen) wird durch \(S(t) = -0.2t^3 + 2t^2 - 4t\) für \(t \in [0, 8]\) modelliert. Wann war der Popularitäts-Score gleich Null? Verwende den Taschenrechner <strong>[TR]</strong>.</li>
+                 </ol>
+             </section>
+
+             <section id="finden_x_zu_y">
+                <h2>Bestimmung von x-Werten bei y (<strong>[TR]</strong>)</h2>
+                 <h3>Erklärung</h3>
+                 <p>Hier suchen wir nach den \(x\)-Werten, für die die Funktion einen bestimmten Wert \(y_0\) annimmt. Das bedeutet, wir lösen die Gleichung \(f(x) = y_0\). Dies ist äquivalent zur Nullstellenfindung der Funktion \(g(x) = f(x) - y_0\). Auch hier verwenden wir für Polynome vom Grad 3 oder 4 den <strong>Taschenrechner</strong> <strong>[TR]</strong> zum Lösen der Gleichung \(f(x) - y_0 = 0\). Im Design-Kontext könnte man fragen: An welchen Stellen hat das Objekt eine bestimmte Höhe/Breite? Im Social-Media-Kontext bedeutet das z.B.: Wann wurde eine bestimmte Anzahl an Likes oder Besuchern erreicht?</p>
+
+                 <div class="infobox">
+                    <p><strong>💡 Wie findet man x zu einem gegebenen y?</strong></p>
+                    <p>Man sucht die x-Stelle(n), an denen die Funktion \(f\) einen vorgegebenen Wert \(y_0\) hat. Grafisch sucht man die Schnittpunkte des Graphen von \(f\) mit der horizontalen Linie \(y=y_0\).<br>
+                    <strong>Finden:</strong> Man löst die Gleichung \(f(x)=y_0\). Dies formt man zu \(f(x) - y_0 = 0\) um und löst diese Gleichung (wie eine Nullstellensuche) mit dem Taschenrechner <strong>[TR]</strong>. Es kann keine, eine oder mehrere Lösungen geben.</p>
+                 </div>
+
+                 <h3>Beispiel (Gestaltung)</h3>
+                 <p>An welchen Positionen \(x\) hat das Liegenprofil \(f(x) = -0.01x^4 + 0.1x^3 - 0.2x^2 + 1.5\) eine Höhe von \(y_0 = 2\)?<br>
+                 Wir lösen die Gleichung \(f(x) = 2\):</p>
+                 <p>\[-0.01x^4 + 0.1x^3 - 0.2x^2 + 1.5 = 2\]</p>
+                 <p>Umstellen zu einer Nullstellenform:</p>
+                 <p>\[-0.01x^4 + 0.1x^3 - 0.2x^2 - 0.5 = 0\]</p>
+                 <p>Diese Gleichung 4. Grades lösen wir mit dem Taschenrechner <strong>[TR]</strong>.<br>
+                 Der Taschenrechner liefert (im relevanten Definitionsbereich \(x \ge 0\)) die ungefähren Lösungen \(x_1 \approx 3.78\) und \(x_2 \approx 6.99\).<br>
+                 An diesen beiden Positionen hat die Liege eine Höhe von 2 Dezimetern.</p>
+                  <div id="plotLiegeHoehe2" class="plotly-chart"></div>
+
+                 <h3>Beispiel (Social Media)</h3>
+                 <p>Wann erreichte die Anzahl der täglichen Website-Besucher \(V(x) = -0.1x^3 + 1.5x^2 + 0.5x + 2\) (in Tausend, \(x\) in Tagen) einen Wert von 40 Tausend (\(y_0=40\))?<br>
+                 Wir lösen \(V(x) = 40\):</p>
+                 <p>\[-0.1x^3 + 1.5x^2 + 0.5x + 2 = 40\]</p>
+                 <p>Umstellen zur Nullstellenform:</p>
+                 <p>\[-0.1x^3 + 1.5x^2 + 0.5x - 38 = 0\]</p>
+                 <p>Wir lösen diese Gleichung 3. Grades mit dem Taschenrechner <strong>[TR]</strong>.<br>
+                 Der TR liefert die ungefähre Lösung \(x \approx 6.17\) (und zwei weitere Lösungen außerhalb des relevanten Bereichs \(x \in [0, 10]\) oder komplex).<br>
+                 Nach etwa 6.17 Tagen wurde die Marke von 40000 Besuchern erreicht.</p>
+
+                 <h3>Aufgaben</h3>
+                 <ol>
+                    <li>An welchen Stellen \(x\) hat der Design-Griff \(g(x) = 0.5x^3 - 2x + 1\) die Höhe \(y_0 = 1.5\)? Löse die Gleichung \(g(x)=1.5\) mit dem Taschenrechner <strong>[TR]</strong>.</li>
+                    <li>Für das Hügelprofil \(h(x) = -0.05x^4 + 0.5x^2 + 0.5\): Wo ist die Höhe genau \(h(x) = 1\)? Löse \(h(x)=1\) mit dem Taschenrechner <strong>[TR]</strong>.</li>
+                    <li>Für die Likes-Funktion \(L(t) = -0.05t^3 + 0.6t^2 + 0.1t\) (in Hundert Likes, \(t\) in Stunden): Wann erreicht der Post 500 Likes (d.h. \(L(t)=5\))? Löse \(L(t)=5\) mit dem Taschenrechner <strong>[TR]</strong> im Intervall \(t \in [0, 8]\).</li>
+                 </ol>
+            </section>
+
+            <section id="ableitungen">
+                <h2>Ableitungen: Steigung & Krümmung</h2>
+                 <h3>Erklärung</h3>
+                 <p>Die <span class="tooltip" tabindex="0"><strong>erste Ableitung</strong> \(f'(x)\)<span class="tooltiptext">Gibt die lokale Änderungsrate (Steigung der Tangente) der Funktion f an der Stelle x an.</span></span> einer Funktion \(f(x)\) gibt die <strong>Steigung</strong> der Tangente an den Graphen von \(f\) an der Stelle \(x\) an. Sie beschreibt die lokale Änderungsrate der Funktion. Im Designkontext bedeutet dies, wie steil ein Profil an einer bestimmten Stelle ansteigt oder abfällt. Im Social-Media-Kontext beschreibt sie die momentane Wachstums- oder Abnahmerate (z.B. Likes pro Stunde, neue Besucher pro Tag).<br>
+                 Die <span class="tooltip" tabindex="0"><strong>zweite Ableitung</strong> \(f''(x)\)<span class="tooltiptext">Gibt die Änderung der Steigung (Krümmung) der Funktion f an der Stelle x an. Ist die Ableitung von f'(x).</span></span> beschreibt die Änderung der Steigung, also die <strong>Krümmung</strong> des Graphen (Links- oder Rechtskurve). Sie gibt an, ob die Wachstumsrate zunimmt (positiv, beschleunigtes Wachstum) oder abnimmt (negativ, verlangsamtes Wachstum).</p>
+
+                 <p>Für Polynomfunktionen gelten einfache Ableitungsregeln:</p>
+                 <ul>
+                    <li><strong>Potenzregel:</strong> \((x^n)' = n \cdot x^{n-1}\)</li>
+                    <li><strong>Faktorregel:</strong> \((c \cdot g(x))' = c \cdot g'(x)\) (Konstante \(c\) bleibt erhalten)</li>
+                    <li><strong>Summenregel:</strong> \((g(x) + h(x))' = g'(x) + h'(x)\) (Summanden einzeln ableiten)</li>
+                    <li>Eine Konstante \(a_0\) fällt beim Ableiten weg: \((a_0)' = 0\).</li>
+                 </ul>
+                 <p>Die Ableitung eines Polynoms ist wieder ein Polynom, dessen Grad um 1 niedriger ist.</p>
+
+                 <div class="infobox">
+                    <p><strong>💡 Erste Ableitung \(f'(x)\) - Die Steigung</strong></p>
+                    <p>Die erste Ableitung \(f'(x)\) gibt für jede Stelle \(x\) die Steigung (momentane Änderungsrate) des Graphen der Funktion \(f\) an dieser Stelle an.</p>
+                    <ul>
+                        <li>\(f'(x) > 0\): Graph steigt an / Wert nimmt zu.</li>
+                        <li>\(f'(x) < 0\): Graph fällt ab / Wert nimmt ab.</li>
+                        <li>\(f'(x) = 0\): Graph hat eine waagerechte Tangente / momentan keine Änderung (<span class="tooltip" tabindex="0"><strong>Extrempunkt</strong><span class="tooltiptext">Ein lokaler Hoch- oder Tiefpunkt der Funktion.</span></span> möglich).</li>
+                    </ul>
+                    <p>Berechnung: Potenz-, Faktor- und Summenregel anwenden.</p>
+                 </div>
+
+                 <div class="infobox">
+                    <p><strong>💡 Zweite Ableitung \(f''(x)\) - Die Krümmung</strong></p>
+                    <p>Die zweite Ableitung \(f''(x)\) gibt für jede Stelle \(x\) die Krümmung (Änderung der Änderungsrate) des Graphen der Funktion \(f\) an dieser Stelle an. Sie ist die Ableitung der ersten Ableitung (\(f'' = (f')'\)).</p>
+                    <ul>
+                        <li>\(f''(x) > 0\): Graph ist <span class="tooltip" tabindex="0"><strong>linksgekrümmt</strong><span class="tooltiptext">Konkav, wie eine nach oben geöffnete Schüssel. Die Steigung nimmt zu.</span></span> (konkav) / Zunahme beschleunigt sich oder Abnahme verlangsamt sich.</li>
+                        <li>\(f''(x) < 0\): Graph ist <span class="tooltip" tabindex="0"><strong>rechtsgekrümmt</strong><span class="tooltiptext">Konvex, wie eine nach unten geöffnete Schüssel. Die Steigung nimmt ab.</span></span> (konvex) / Zunahme verlangsamt sich oder Abnahme beschleunigt sich.</li>
+                        <li>\(f''(x) = 0\): Krümmung ist Null / Änderungsrate ändert sich momentan nicht (<span class="tooltip" tabindex="0"><strong>Wendepunkt</strong><span class="tooltiptext">Ein Punkt, an dem sich das Krümmungsverhalten des Graphen ändert.</span></span> möglich).</li>
+                    </ul>
+                    <p>Berechnung: Funktion \(f(x)\) zweimal ableiten.</p>
+                 </div>
+
+                 <h3>Beispiel (Gestaltung)</h3>
+                 <p>Wir betrachten wieder das Liegenprofil \(f(x) = -0.01x^4 + 0.1x^3 - 0.2x^2 + 1.5\).<br>
+                 <strong>Erste Ableitung (Steigung):</strong><br>
+                 \[f'(x) = -0.04x^3 + 0.3x^2 - 0.4x\]
+                 Die Steigung an der Stelle \(x=2\) ist:
+                 \[f'(2) = -0.04(2)^3 + 0.3(2)^2 - 0.4(2) = 0.08\]
+                 An der Stelle \(x=2\) hat das Profil eine leichte positive Steigung von 0.08.</p>
+                 <p><strong>Zweite Ableitung (Krümmung):</strong><br>
+                 \[f''(x) = -0.12x^2 + 0.6x - 0.4\]
+                 Die Krümmung an der Stelle \(x=2\) ist:
+                 \[f''(2) = -0.12(2)^2 + 0.6(2) - 0.4 = 0.32\]
+                 Eine positive zweite Ableitung (\(0.32 > 0\)) deutet auf eine Linkskrümmung an der Stelle \(x=2\) hin.</p>
+                 <div id="plotLiegeTangente" class="plotly-chart"></div>
+
+                 <h3>Beispiel (Social Media)</h3>
+                 <p>Betrachten wir die Besucherfunktion \(V(x) = -0.1x^3 + 1.5x^2 + 0.5x + 2\).<br>
+                 <strong>Erste Ableitung (Besucherzuwachsrate pro Tag):</strong>
+                 \[V'(x) = -0.3x^2 + 3x + 0.5\]
+                 Wie schnell stieg die Besucherzahl am Tag \(x=4\)?
+                 \[V'(4) = -0.3(4)^2 + 3(4) + 0.5 = 7.7\]
+                 Am 4. Tag betrug die Zuwachsrate 7.7 Tausend Besucher pro Tag.</p>
+                 <p><strong>Zweite Ableitung (Änderung der Zuwachsrate):</strong>
+                 \[V''(x) = -0.6x + 3\]
+                 Wie änderte sich die Zuwachsrate am Tag \(x=4\)?
+                 \[V''(4) = -0.6(4) + 3 = 0.6\]
+                 Da \(V''(4) > 0\), nahm die Wachstumsrate an Tag 4 immer noch zu. Das Wachstum beschleunigte sich noch leicht.</p>
+
+                 <h3>Aufgaben</h3>
+                 <ol>
+                    <li>Berechne die erste und zweite Ableitung für den Design-Griff \(g(x) = 0.5x^3 - 2x + 1\).</li>
+                    <li>Bestimme die Steigung des Hügelprofils \(h(x) = -0.05x^4 + 0.5x^2 + 0.5\) an der Stelle \(x=1\) und \(x=-2\). Was bedeutet das Vorzeichen der Steigung jeweils?</li>
+                    <li>Berechne die Krümmung \(h''(x)\) des Hügelprofils an der Stelle \(x=0\). Welche Form hat der Graph dort (links- oder rechtsgekrümmt)?</li>
+                    <li>Für die Likes-Funktion \(L(t) = -0.05t^3 + 0.6t^2 + 0.1t\):<br>
+                        a) Berechne die momentane Änderungsrate der Likes \(L'(3)\).<br>
+                        b) Berechne \(L''(3)\). Was sagt das Vorzeichen über die Entwicklung der Like-Rate aus?</li>
+                 </ol>
+             </section>
+
+             <section id="extrempunkte">
+                <h2>Extrempunkte (<strong>[TR]</strong>)</h2>
+                 <h3>Erklärung</h3>
+                 <p><span class="tooltip" tabindex="0"><strong>Extrempunkte</strong><span class="tooltiptext">Punkte auf dem Graphen mit lokal maximalem oder minimalem Funktionswert.</span></span> sind Punkte auf dem Graphen, an denen die Funktion lokal einen höchsten (<span class="tooltip" tabindex="0"><strong>lokales Maximum</strong><span class="tooltiptext">Hochpunkt (HP). Höchster Punkt in einer lokalen Umgebung.</span></span>, Hochpunkt, HP) oder tiefsten (<span class="tooltip" tabindex="0"><strong>lokales Minimum</strong><span class="tooltiptext">Tiefpunkt (TP). Tiefster Punkt in einer lokalen Umgebung.</span></span>, Tiefpunkt, TP) Wert annimmt. An diesen Stellen ist die Steigung der Tangente gleich Null. Im Designkontext können dies die höchsten oder tiefsten Punkte eines Profils sein. Im Social-Media-Kontext sind dies die Zeitpunkte, an denen ein Messwert einen Peak erreicht oder einen Tiefpunkt durchläuft.</p>
+
+                 <p><strong>Vorgehen zur Bestimmung von Extrempunkten:</strong></p>
+                 <ul>
+                    <li><strong>Notwendige Bedingung:</strong> Finde alle Stellen \(x_E\), für die \(f'(x_E) = 0\) gilt. Diese \(x_E\) sind die <span class="tooltip" tabindex="0"><strong>Kandidaten</strong><span class="tooltiptext">Mögliche Stellen, an denen ein Extrempunkt vorliegen könnte. Müssen noch überprüft werden.</span></span> für Extremstellen. Die Gleichung \(f'(x) = 0\) lösen wir mit dem <strong>[TR]</strong>.</li>
+                    <li><strong>Hinreichende Bedingung (mit f''):</strong> Überprüfe für jeden Kandidaten \(x_E\) das Vorzeichen der zweiten Ableitung an dieser Stelle:
+                        <ul>
+                            <li>Ist \(f''(x_E) < 0\), liegt bei \(x_E\) ein <strong>lokales Maximum</strong> vor.</li>
+                            <li>Ist \(f''(x_E) > 0\), liegt bei \(x_E\) ein <strong>lokales Minimum</strong> vor.</li>
+                            <li>Ist \(f''(x_E) = 0\), liefert dieses Kriterium keine Aussage (oft Sattelpunkt).</li>
+                        </ul>
+                    </li>
+                    <li><strong>y-Wert berechnen:</strong> \(y_E = f(x_E)\). Der Extrempunkt ist \((x_E | y_E)\).</li>
+                 </ul>
+
+                 <div class="infobox">
+                    <p><strong>💡 Wie findet man Extrempunkte?</strong></p>
+                    <p>Extrempunkte haben eine waagerechte Tangente (\(f'(x)=0\)).</p>
+                    <ol>
+                        <li><strong>Ableiten:</strong> \(f'(x)\) und \(f''(x)\) bilden.</li>
+                        <li><strong>Kandidaten finden:</strong> \(f'(x) = 0\) lösen (<strong>[TR]</strong>). Erhalte \(x_E\).</li>
+                        <li><strong>Prüfen mit \(f''\):</strong> Setze \(x_E\) in \(f''(x)\) ein:
+                            <ul>
+                                <li>\(f''(x_E) < 0 \implies\) HP bei \(x_E\).</li>
+                                <li>\(f''(x_E) > 0 \implies\) TP bei \(x_E\).</li>
+                                <li>\(f''(x_E) = 0 \implies\) Keine Aussage.</li>
+                            </ul>
+                        </li>
+                        <li><strong>y-Wert berechnen:</strong> \(y_E = f(x_E)\). Punkt: \((x_E | y_E)\).</li>
+                    </ol>
+                 </div>
+
+                 <h3>Beispiel (Gestaltung)</h3>
+                 <p>Wo hat das Liegenprofil \(f(x) = -0.01x^4 + \dots\) seine Extrema für \(x \ge 0\)?<br>
+                 \(f'(x) = -0.04x^3 + 0.3x^2 - 0.4x\), \(f''(x) = -0.12x^2 + 0.6x - 0.4\).<br>
+                 <strong>1. Notwendige Bedingung:</strong> \(f'(x)=0\). Mit <strong>[TR]</strong> \(\implies x_1 = 0, x_2 \approx 1.73, x_3 \approx 5.77\).<br>
+                 <strong>2. Hinreichende Bedingung (mit \(f''\)):</strong>
+                 <ul>
+                    <li>\(f''(0) = -0.4 < 0 \implies\) Lokales Maximum bei \(x=0\).</li>
+                    <li>\(f''(1.73) \approx 0.28 > 0 \implies\) Lokales Minimum bei \(x \approx 1.73\).</li>
+                    <li>\(f''(5.77) \approx -0.93 < 0 \implies\) Lokales Maximum bei \(x \approx 5.77\).</li>
+                 </ul>
+                 <strong>3. y-Werte berechnen:</strong>
+                 <ul>
+                    <li>\(f(0)=1.5 \implies HP_1(0 | 1.5)\).</li>
+                    <li>\(f(1.73) \approx 1.33 \implies TP(\approx 1.73 | \approx 1.33)\).</li>
+                    <li>\(f(5.77) \approx 2.97 \implies HP_2(\approx 5.77 | \approx 2.97)\).</li>
+                 </ul>
+                 Der höchste Punkt ist \(HP_2\).</p>
+                 <div id="plotLiegeExtrema" class="plotly-chart"></div>
+
+                 <h3>Beispiel (Social Media)</h3>
+                 <p>Wann erreichte die Besucherzahl \(V(x) = -0.1x^3 + \dots\) im Intervall \(x \in [0, 10]\) ihren Höchststand?<br>
+                 \(V'(x) = -0.3x^2 + 3x + 0.5\), \(V''(x) = -0.6x + 3\).<br>
+                 <strong>1. Notwendige Bedingung:</strong> \(V'(x)=0\). Mit <strong>[TR]</strong> \(\implies x_1 \approx 10.16\) (und \(x_2 < 0\)).<br>
+                 <strong>2. Hinreichende Bedingung:</strong> \(V''(10.16) \approx -3.1 < 0 \implies\) Lokales Maximum bei \(x \approx 10.16\).<br>
+                 <strong>3. Interpretation im Intervall [0, 10]:</strong> Da das Maximum außerhalb liegt und die Funktion bis dahin steigt, ist das Maximum im Intervall am rechten Rand \(x=10\). \(V(10) = 57\). Höchststand an Tag 10 mit 57000 Besuchern.</p>
+
+                 <h3>Aufgaben</h3>
+                 <ol>
+                    <li>Finde die Extrempunkte des Design-Griffs \(g(x) = 0.5x^3 - 2x + 1\). Löse \(g'(x)=0\) und prüfe mit \(g''(x)\). Gib Koordinaten an.</li>
+                    <li>Bestimme die Extrempunkte des Hügelprofils \(h(x) = -0.05x^4 + 0.5x^2 + 0.5\). Nutze <strong>[TR]</strong> für \(h'(x)=0\) und prüfe mit \(h''(x)\). Höchster Punkt?</li>
+                    <li>Likes-Funktion \(L(t) = -0.05t^3 + 0.6t^2 + 0.1t\) (\(t \in [0, 8]\)): Wann ist der Höchststand? Wie viele Likes? Nutze \(L'(t)=0\) und \(L''(t)\). Intervall beachten!</li>
+                 </ol>
+             </section>
+
+             <section id="wendepunkte">
+                <h2>Wendepunkte (<strong>[TR]</strong>)</h2>
+                 <h3>Erklärung</h3>
+                 <p>Ein <span class="tooltip" tabindex="0"><strong>Wendepunkt</strong><span class="tooltiptext">Ein Punkt, an dem sich das Krümmungsverhalten des Graphen ändert (von links- zu rechtsgekrümmt oder umgekehrt).</span></span> (WP) ist ein Punkt auf dem Graphen, an dem sich das <span class="tooltip" tabindex="0"><strong>Krümmungsverhalten</strong><span class="tooltiptext">Beschreibt, ob eine Kurve nach links (konkav) oder nach rechts (konvex) gekrümmt ist.</span></span> ändert. An Wendepunkten ist die zweite Ableitung \(f''(x)\) oft (aber nicht immer) gleich Null. Im Design können Wendepunkte für ästhetisch ansprechende Übergänge sorgen. Im Social-Media-Kontext markiert ein Wendepunkt oft den Zeitpunkt, an dem sich ein Trend ändert: z.B. wo das Wachstum von beschleunigt zu verlangsamt übergeht (Punkt der höchsten Wachstums<em>rate</em>).</p>
+
+                 <p><strong>Vorgehen zur Bestimmung von Wendepunkten:</strong></p>
+                 <ul>
+                    <li><strong>Notwendige Bedingung:</strong> Finde alle Stellen \(x_W\), für die \(f''(x_W) = 0\) gilt. Diese \(x_W\) sind die <strong>Kandidaten</strong> für Wendestellen. Die Gleichung \(f''(x) = 0\) lösen wir mit dem <strong>[TR]</strong>.</li>
+                    <li><strong>Hinreichende Bedingung (mit f'''):</strong> Berechne die dritte Ableitung \(f'''(x)\). Überprüfe für jeden Kandidaten \(x_W\), ob \(f'''(x_W) \neq 0\) ist.
+                        <ul>
+                            <li>Ist \(f'''(x_W) \neq 0\), liegt bei \(x_W\) eine <strong>Wendestelle</strong> vor.</li>
+                            <li>Ist \(f'''(x_W) = 0\), liefert dieses Kriterium keine Aussage (Vorzeichenwechsel von \(f''\) prüfen).</li>
+                        </ul>
+                    </li>
+                    <li><strong>y-Wert berechnen:</strong> \(y_W = f(x_W)\). Der Wendepunkt ist \((x_W | y_W)\).</li>
+                 </ul>
+
+                 <div class="infobox">
+                    <p><strong>💡 Wie findet man Wendepunkte?</strong></p>
+                    <p>Wendepunkte sind Punkte, an denen sich die Krümmung ändert (\(f''\) wechselt Vorzeichen). Oft Punkte maximaler/minimaler Steigung.</p>
+                    <ol>
+                        <li><strong>Ableiten:</strong> \(f''(x)\) und \(f'''(x)\) bilden.</li>
+                        <li><strong>Kandidaten finden:</strong> \(f''(x) = 0\) lösen (<strong>[TR]</strong>). Erhalte \(x_W\).</li>
+                        <li><strong>Prüfen mit \(f'''\):</strong> Setze \(x_W\) in \(f'''(x)\) ein:
+                            <ul>
+                                <li>\(f'''(x_W) \neq 0 \implies\) WP bei \(x_W\).</li>
+                                <li>\(f'''(x_W) = 0 \implies\) Keine Aussage (VZW von \(f''\) prüfen).</li>
+                            </ul>
+                        </li>
+                        <li><strong>y-Wert berechnen:</strong> \(y_W = f(x_W)\). Punkt: \((x_W | y_W)\).</li>
+                    </ol>
+                 </div>
+
+                 <h3>Beispiel (Gestaltung)</h3>
+                 <p>Wo hat das Liegenprofil \(f(x) = -0.01x^4 + \dots\) Wendepunkte?<br>
+                 \(f''(x) = -0.12x^2 + 0.6x - 0.4\). \(f'''(x) = -0.24x + 0.6\).<br>
+                 <strong>1. Notwendige Bedingung:</strong> \(f''(x)=0\). Mit <strong>[TR]</strong> \(\implies x_1 \approx 0.79, x_2 \approx 4.21\).<br>
+                 <strong>2. Hinreichende Bedingung (mit \(f'''\)):</strong>
+                 <ul>
+                    <li>\(f'''(0.79) \approx 0.41 \neq 0 \implies\) Wendestelle bei \(x \approx 0.79\).</li>
+                    <li>\(f'''(4.21) \approx -0.41 \neq 0 \implies\) Wendestelle bei \(x \approx 4.21\).</li>
+                 </ul>
+                 <strong>3. y-Werte berechnen:</strong>
+                 <ul>
+                    <li>\(f(0.79) \approx 1.42 \implies WP_1(\approx 0.79 | \approx 1.42)\).</li>
+                    <li>\(f(4.21) \approx 2.28 \implies WP_2(\approx 4.21 | \approx 2.28)\).</li>
+                 </ul></p>
+                 <div id="plotLiegeWende" class="plotly-chart"></div>
+
+                 <h3>Beispiel (Social Media)</h3>
+                 <p>Wann war die Wachstumsrate von \(V(x) = -0.1x^3 + \dots\) am größten? Suche WP.<br>
+                 \(V''(x) = -0.6x + 3\). \(V'''(x) = -0.6\).<br>
+                 <strong>1. Notwendige Bedingung:</strong> \(V''(x)=0 \implies x = 5\).<br>
+                 <strong>2. Hinreichende Bedingung:</strong> \(V'''(5) = -0.6 \neq 0 \implies\) Wendestelle bei \(x=5\).<br>
+                 <strong>3. y-Wert berechnen:</strong> \(V(5) = 29.5 \implies WP(5 | 29.5)\).<br>
+                 <strong>Interpretation:</strong> Bei \(x=5\) ist die Wachstumsrate \(V'(x)\) maximal (\(V'(5)=8\)).</p>
+                 <div id="plotBesucherWende" class="plotly-chart"></div>
+
+                 <h3>Aufgaben</h3>
+                 <ol>
+                    <li>Bestimme die Wendepunkte des Design-Griffs \(g(x) = 0.5x^3 - 2x + 1\). Löse \(g''(x)=0\) und prüfe mit \(g'''(x)\). Koordinaten? Formänderung?</li>
+                    <li>Finde die Wendepunkte des Hügelprofils \(h(x) = -0.05x^4 + 0.5x^2 + 0.5\). Löse \(h''(x)=0\) (<strong>[TR]</strong>) und prüfe mit \(h'''(x)\).</li>
+                    <li>Likes-Funktion \(L(t) = -0.05t^3 + 0.6t^2 + 0.1t\): Wann ist die Zunahme der Likes pro Stunde am größten (WP suchen)? Berechne Zeitpunkt und Like-Rate \(L'(t)\) dort.</li>
+                 </ol>
+             </section>
+
+             <section id="integrale">
+                <h2>Bestimmte Integrale (<strong>[TR]</strong>)</h2>
+                 <h3>Erklärung</h3>
+                 <p>Das <span class="tooltip" tabindex="0"><strong>bestimmte Integral</strong><span class="tooltiptext">Berechnet die (orientierte) Fläche zwischen Funktionsgraph und x-Achse über einem Intervall [a, b].</span></span> \[\int_a^b f(x) \, dx\] berechnet die <strong>Flächenbilanz</strong> zwischen dem Graphen der Funktion \(f(x)\) und der \(x\)-Achse im Intervall \([a, b]\). Flächenanteile oberhalb der \(x\)-Achse zählen positiv, Flächenanteile unterhalb negativ.<br>
+                 Im Design kann das Integral z.B. verwendet werden, um Querschnittsflächen zu berechnen. Im Social-Media-Kontext kann es verwendet werden, um eine Gesamtzahl aus einer Ratenfunktion zu berechnen. Wenn \(f(x)\) z.B. die <em>Rate</em> der neuen Likes pro Stunde ist, dann ist \(\int_a^b f(x) \, dx\) die <em>Gesamtzahl</em> der neuen Likes zwischen Stunde \(a\) und Stunde \(b\).<br>
+                 Moderne <strong>Taschenrechner</strong> <strong>[TR]</strong> können bestimmte Integrale direkt numerisch berechnen.</p>
+
+                 <div class="infobox">
+                    <p><strong>💡 Was ist das bestimmte Integral?</strong></p>
+                    <p>\[\int_a^b f(x) \, dx\] gibt den orientierten Flächeninhalt zwischen Graph \(f\) und x-Achse von \(a\) bis \(b\) an (Fläche oben positiv, unten negativ). Oder: Akkumulation einer Rate.<br>
+                    <strong>Berechnung:</strong> Taschenrechner <strong>[TR]</strong> mit Funktion für \(\int_a^b f(x) \, dx\).</p>
+                 </div>
+
+                 <h3>Beispiel (Gestaltung)</h3>
+                 <p>Querschnittsfläche eines Dekoelements, obere Kante \(k(x) = -x^4 + 2x^3 - x^2 + 1\) im Bereich \(x \in [0, 1.5]\), untere Kante x-Achse.<br>
+                 Wir berechnen \(A = \int_0^{1.5} (-x^4 + 2x^3 - x^2 + 1) \, dx\).<br>
+                 Mit <strong>[TR]</strong> \(\implies A \approx 1.3875\). Fläche ≈ 1.39 FE.</p>
+                 <div id="plotIntegralFlaeche" class="plotly-chart"></div>
+
+                 <h3>Beispiel (Social Media)</h3>
+                 <p>Rate neuer Nutzer \(R(t) = -0.2t^3 + 1.2t^2 + 0.1t\) (Tsd./h). Wie viele Nutzer in den ersten 3 Stunden?<br>
+                 Wir berechnen \(N = \int_0^3 R(t) \, dt\).<br>
+                 Mit <strong>[TR]</strong> \(\implies N = 7.65\). Also 7650 neue Nutzer.</p>
+
+                 <h3>Aufgaben</h3>
+                 <ol>
+                    <li>Berechne \(\int_1^2 (0.5x^3 - 2x + 1) dx\) mit <strong>[TR]</strong>. Interpretiere das Vorzeichen.</li>
+                    <li>Berechne \(\int_{-2}^2 (-0.05x^4 + 0.5x^2 + 0.5) dx\) mit <strong>[TR]</strong>. Was könnte die Fläche repräsentieren?</li>
+                    <li>Like-Rate \(L'(t) = -0.15t^2 + 1.2t + 0.1\) (Hundert/h). Wie viele Likes (in Hundert) kamen zwischen \(t=1\) und \(t=5\) hinzu? Berechne \(\int_1^5 L'(t) \, dt\) mit <strong>[TR]</strong>.</li>
+                 </ol>
+             </section>
+
+             <section id="steckbrief">
+                <h2>Steckbriefaufgaben (<strong>[TR]</strong>)</h2>
+                 <h3>Erklärung</h3>
+                 <p>Bei <span class="tooltip" tabindex="0"><strong>Steckbriefaufgaben</strong><span class="tooltiptext">Auch Funktionsrekonstruktion. Finden einer Funktion anhand gegebener Eigenschaften (Punkte, Steigungen, Extrema etc.).</span></span> ist nicht die Funktion selbst gegeben, sondern einige ihrer <strong>Eigenschaften</strong>. Ziel ist es, die Funktionsgleichung \(f(x) = ax^n + \dots + e\) zu finden. Man benötigt \(n+1\) Bedingungen für Grad \(n\).</p>
+
+                 <p><strong>Vorgehen:</strong></p>
+                 <ol>
+                    <li><strong>Ansatz wählen:</strong> Grad \(n\) festlegen, \(f(x)\), \(f'(x)\), \(f''(x)\) aufschreiben.</li>
+                    <li><strong>Bedingungen übersetzen:</strong> Jede Eigenschaft in eine Gleichung mit den Koeffizienten \(a, b, \dots\) umwandeln.</li>
+                    <li><strong>LGS aufstellen:</strong> \(n+1\) Gleichungen für \(n+1\) Unbekannte.</li>
+                    <li><strong>LGS lösen:</strong> Mit Taschenrechner <strong>[TR]</strong> (Matrix/Gleichungslöser).</li>
+                    <li><strong>Funktion angeben:</strong> Gefundene Koeffizienten einsetzen.</li>
+                 </ol>
+
+                 <div class="infobox">
+                    <p><strong>💡 Wie löst man Steckbriefaufgaben?</strong></p>
+                    <p>Suche Funktion \(f(x)=ax^n + \dots\) aus Eigenschaften.</p>
+                    <ol>
+                        <li>Ansatz + Ableitungen (\(n+1\) Koeffizienten).</li>
+                        <li>Bedingungen \(\to\) \(n+1\) Gleichungen (Punkt \(f(x_0)=y_0\), Steigung \(f'(x_0)=m\), etc.).</li>
+                        <li>LGS aufstellen.</li>
+                        <li>LGS lösen mit <strong>[TR]</strong>.</li>
+                        <li>Funktion \(f(x)\) notieren.</li>
+                    </ol>
+                 </div>
+
+                 <h3>Beispiel (Gestaltung)</h3>
+                 <p>S-Kurve, Grad 3 (\(f(x) = ax^3+bx^2+cx+d\)). 4 Bedingungen:</p>
+                 <ol><li>\(f(0)=0 \implies d=0\)</li><li>\(f(4)=2 \implies 64a+16b+4c+d=2\)</li><li>\(f'(0)=0 \implies c=0\)</li><li>\(f'(4)=0 \implies 48a+8b+c=0\)</li></ol>
+                 <p>LGS lösen mit <strong>[TR]</strong> \(\implies a=-1/16, b=3/8, c=0, d=0\).</p>
+                 <p>\[f(x) = -\frac{1}{16}x^3 + \frac{3}{8}x^2\]</p>
+                 <div id="plotSteckbriefSForm" class="plotly-chart"></div>
+
+                 <h3>Beispiel (Social Media)</h3>
+                 <p>Nutzer \(N(t)\), Grad 3 (\(N(t)=at^3+bt^2+ct+d\)). 4 Bedingungen:</p>
+                 <ol><li>\(N(0)=5 \implies d=5\)</li><li>\(N(10)=105 \implies 1000a+100b+10c+d=105\)</li><li>\(N''(5)=0\) (max. Rate) \(\implies 30a+2b=0\)</li><li>\(N'(5)=12\) (max. Rate Wert) \(\implies 75a+10b+c=12\)</li></ol>
+                 <p>LGS lösen mit <strong>[TR]</strong> \(\implies a=-0.08, b=1.2, c=6, d=5\).</p>
+                 <p>\[N(t) = -0.08t^3 + 1.2t^2 + 6t + 5\]</p>
+
+                 <h3>Aufgaben</h3>
+                 <ol>
+                    <li>Symmetrischer Torbogen, Grad 4 (\(f(x)=ax^4+bx^2+c\)). Bedingungen: Punkte \((-4|0)\) & \((4|0)\), Scheitel \((0|5)\). Stelle LGS auf (\(f(4)=0, f(0)=5\), 3. Bedingung implizit oder \(f'(4)=0\)). Löse mit <strong>[TR]</strong>.</li>
+                    <li>Rutsche, Grad 3 (\(f(x)=ax^3+bx^2+cx+d\)). Bedingungen: \(P(0|3)\), \(Q(5|0)\), \(f'(0)=0\), \(f''(2)=0\) (WP). Stelle 4x4 LGS auf, löse mit <strong>[TR]</strong>.</li>
+                    <li>Website-Besucher \(V(t)\), Grad 3. Bedingungen: \(V(0)=1\), \(V(5)=20\), \(V'(10)=0\) (Max bei t=10), \(V(10)=30\). Stelle 4x4 LGS auf, löse mit <strong>[TR]</strong>.</li>
+                 </ol>
+             </section>
+
+        </article>
+
+        <!-- ==================================================== -->
+        <!-- TEIL II: VEKTORRECHNUNG                              -->
+        <!-- ==================================================== -->
+        <article id="teil2">
+            <h1>Teil II: Vektorrechnung im 3D-Raum</h1>
+            <p>Die Vektorrechnung ist ein mächtiges Werkzeug...</p>
+
+             <section id="punkte3d">
+                <h2>Punkte im 3D-Raum</h2>
+                <!-- Inhalt direkt hier -->
+                <h3>Erklärung</h3>
+                <p>Ein Punkt wird durch drei Koordinaten (x, y, z) beschrieben...</p>
+                <div class="infobox">...</div>
+                <h3>Beispiel</h3>
+                <p>Eckpunkt A(30, 0, 10), Wandpunkt B(0, 50, 80).</p>
+                <div id="plotPunkt3D" class="plotly-chart"></div>
+                <h3>Aufgaben</h3>
+                <ol>...</ol>
+            </section>
+
+             <section id="vektoren_verschiebung">
+                <h2>Vektoren als Verschiebung & Ortsvektoren</h2>
+                <!-- Inhalt direkt hier -->
+                 <h3>Erklärung</h3>
+                 <p>Ein Vektor \(\vec{v}\) beschreibt eine Verschiebung...</p>
+                 <p>\[ \vec{AB} = \punkt{B} - \punkt{A} = \begin{pmatrix} b_1 - a_1 \\ b_2 - a_2 \\ b_3 - a_3 \end{pmatrix} \]</p>
+                 <p>Ortsvektor \(\vec{p} = \vec{OP}\)...</p>
+                 <div class="infobox">...</div>
+                 <h3>Beispiel</h3>
+                 <p>\(\vec{AB} = \begin{pmatrix} -30 \\ 50 \\ 70 \end{pmatrix}\)</p>
+                 <div id="plotVektorAB" class="plotly-chart"></div>
+                 <h3>Aufgaben</h3>
+                 <ol>...</ol>
+            </section>
+
+            <section id="vektorlaenge">
+                <h2>Vektorlänge (Betrag)</h2>
+                <!-- Inhalt direkt hier -->
+                 <h3>Erklärung</h3>
+                 <p>Die Länge (Betrag) eines Vektors \(\vec{v}\)...</p>
+                 <p>\[ |\vec{v}| = \sqrt{v_x^2 + v_y^2 + v_z^2} \]</p>
+                 <div class="infobox">...</div>
+                 <h3>Beispiel</h3>
+                 <p>\(|\vec{AB}| = \sqrt{(-30)^2 + 50^2 + 70^2} = \sqrt{8300} \approx 91.10\)</p>
+                 <div id="plotVektorLaenge" class="plotly-chart"></div>
+                 <h3>Aufgaben</h3>
+                 <ol>...</ol>
+             </section>
+
+            <section id="skalarprodukt">
+                <h2>Skalarprodukt & Orthogonalität</h2>
+                <!-- Inhalt direkt hier -->
+                 <h3>Erklärung</h3>
+                 <p>Das Skalarprodukt zweier Vektoren \(\vec{a}\) und \(\vec{b}\)...</p>
+                 <p>\[ \vec{a} \cdot \vec{b} = a_x b_x + a_y b_y + a_z b_z \]</p>
+                 <p>Wichtig: \(\vec{a} \cdot \vec{b} = 0 \iff \vec{a} \perp \vec{b}\)</p>
+                 <div class="infobox">...</div>
+                 <h3>Beispiel</h3>
+                 <p>\(\vec{u} = \begin{pmatrix} 2 \\ 3 \\ -1 \end{pmatrix}, \vec{v} = \begin{pmatrix} 4 \\ -2 \\ 2 \end{pmatrix} \implies \vec{u} \cdot \vec{v} = 8 - 6 - 2 = 0 \implies \perp\)</p>
+                 <h3>Aufgaben</h3>
+                 <ol>...</ol>
+            </section>
+
+            <section id="winkel">
+                <h2>Winkel zwischen Vektoren ([TR])</h2>
+                <!-- Inhalt direkt hier -->
+                <h3>Erklärung</h3>
+                <p>Der Winkel \(\alpha\) zwischen \(\vec{a}\) und \(\vec{b}\)...</p>
+                <p>\[ \cos \alpha = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}| |\vec{b}|} \implies \alpha = \arccos \left( \frac{\vec{a} \cdot \vec{b}}{|\vec{a}| |\vec{b}|} \right) \] </p>
+                <div class="infobox">...</div>
+                <h3>Beispiel</h3>
+                <p>\(\vec{a} = \begin{pmatrix} 10 \\ 0 \\ 5 \end{pmatrix}, \vec{b} = \begin{pmatrix} 0 \\ 10 \\ 5 \end{pmatrix} \implies \dots \implies \cos \alpha = 0.2 \implies \alpha \approx 78.46^\circ\)</p>
+                <div id="plotWinkelVektoren" class="plotly-chart"></div>
+                <h3>Aufgaben</h3>
+                <ol>...</ol>
+            </section>
+
+            <section id="geraden">
+                <h2>Geradengleichung (Parameterform)</h2>
+                <!-- Inhalt direkt hier -->
+                 <h3>Erklärung</h3>
+                 <p>Eine Gerade \(g\) im Raum...</p>
+                 <p>\[ g: \vec{x} = \vec{p} + t \cdot \vec{u} \]</p>
+                 <p>\(\vec{p}\) Stützvektor, \(\vec{u}\) Richtungsvektor, \(t\) Parameter.</p>
+                 <div class="infobox">...</div>
+                 <h3>Beispiel</h3>
+                 <p>Lampenachse durch \(P(50,50,0)\) nach oben:</p>
+                 <p>\[ g: \vec{x} = \begin{pmatrix} 50 \\ 50 \\ 0 \end{pmatrix} + t \cdot \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \]</p>
+                 <div id="plotGerade3D" class="plotly-chart"></div>
+                 <h3>Aufgaben</h3>
+                 <ol>...</ol>
+            </section>
+
+            <section id="lage_punkt_gerade">
+                <h2>Lage: Punkt/Gerade</h2>
+                <!-- Inhalt direkt hier -->
+                 <h3>Erklärung</h3>
+                 <p>Liegt Punkt \(\punkt{K}\) auf \(g: \vec{x} = \vec{p} + t \vec{u}\)? Punktprobe!</p>
+                 <p>Setze \(\vec{k} = \vec{p} + t \vec{u}\) und löse nach \(t\). Eindeutige Lösung für \(t\)? Ja \(\implies\) drauf. Nein \(\implies\) nicht drauf.</p>
+                 <div class="infobox">...</div>
+                 <h3>Beispiel</h3>
+                 <p>Liegt \(K(50,50,200)\) auf \(g: \vec{x} = \begin{pmatrix} 50 \\ 50 \\ 0 \end{pmatrix} + t \cdot \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\)?</p>
+                 <p>x: \(50=50\). y: \(50=50\). z: \(200=t\). Ja, für \(t=200\).</p>
+                 <p>Liegt \(L(60,50,100)\) auf \(g\)? x: \(60=50\) (falsch!) \(\implies\) Nein.</p>
+                 <h3>Aufgaben</h3>
+                 <ol>...</ol>
+             </section>
+
+            <section id="lage_gerade_gerade">
+                <h2>Lage: Gerade/Gerade ([TR])</h2>
+                <!-- Inhalt direkt hier -->
+                 <h3>Erklärung</h3>
+                 <p>Lage von \(g: \vec{x} = \vec{p} + t \vec{u}\) und \(h: \vec{x} = \vec{q} + s \vec{v}\)?</p>
+                 <ol>
+                     <li>Richtungsvektoren \(\vec{u}, \vec{v}\) kollinear? Ja \(\to\) 2, Nein \(\to\) 3.</li>
+                     <li>Punktprobe Stützpunkt \(\punkt{P}\) auf \(h\)? Ja \(\implies\) identisch. Nein \(\implies\) parallel.</li>
+                     <li>Gleichsetzen \(\vec{p} + t \vec{u} = \vec{q} + s \vec{v}\). LGS lösen. Eindeutige Lösung \((t,s)\)? Ja \(\implies\) schneidend. Nein \(\implies\) windschief.</li>
+                 </ol>
+                 <div class="infobox">...</div>
+                 <h3>Beispiel 1: Parallel/Identisch</h3>
+                 <p>\(g: \vec{x} = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix} + t \begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix}\), \(h: \vec{x} = \begin{pmatrix} 0 \\ 2 \\ 4 \end{pmatrix} + s \begin{pmatrix} -2 \\ 0 \\ 2 \end{pmatrix}\).</p>
+                 <p>RV sind kollinear (\(k=-2\)). Punktprobe P(1,2,3) auf h ergibt \(s=-0.5\). \(\implies\) Identisch.</p>
+                 <h3>Beispiel 2: Schneidend/Windschief</h3>
+                 <p>\(g: \vec{x} = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix} + t \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}\), \(h: \vec{x} = \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} + s \begin{pmatrix} 2 \\ -1 \\ 0 \end{pmatrix}\).</p>
+                 <p>RV nicht kollinear. Gleichsetzen \(\implies\) LGS. Lösung ergibt \(t=1\) und \(s=1\) sowie \(s=-2\). Widerspruch! \(\implies\) Windschief.</p>
+                 <div id="plotLageGeraden" class="plotly-chart"></div>
+                 <h3>Aufgaben</h3>
+                 <ol>...</ol>
+             </section>
+
+            <section id="vektor_aufgaben">
+                <h2>Vertiefende Aufgaben</h2>
+                <!-- Inhalt direkt hier -->
+                 <ol>
+                     <li><strong>Tischgestell:</strong> ...</li>
+                     <li><strong>Lampe:</strong> ...</li>
+                     <li><strong>Fachwerk:</strong> ...</li>
+                 </ol>
+            </section>
+        </article>
+
+        <!-- ==================================================== -->
+        <!-- TEIL III: STOCHASTIK                                 -->
+        <!-- ==================================================== -->
+        <article id="teil3">
+             <h1>Teil III: Ausgewählte Themen der Stochastik</h1>
+             <p>Dieser Teil führt in ausgewählte Themen der Stochastik ein...</p>
+
+              <section id="baumdiagramm">
+                  <h2>Baumdiagramm</h2>
+                  <!-- Inhalt direkt hier -->
+                  <h3>Erklärung</h3>
+                  <p>Ein <span class="tooltip" tabindex="0"><strong>Baumdiagramm</strong><span class="tooltiptext">Grafische Darstellung mehrstufiger Zufallsexperimente.</span></span>...</p>
+                  <p>Pfadregel: \(P(A \cap B) = P(A) \cdot P_A(B)\)</p>
+                  <p>Summenregel...</p>
+                  <div class="infobox">...</div>
+                  <h3>Beispiel: Nutzerfluss Website</h3>
+                  <p>P(Klick)=0.3, P(Kauf|Klick)=0.6...</p>
+                  <div class="baum-diagramm-beschreibung">
+                     <p><strong>Struktur (Text):</strong> Start -> [Klick (0.3) -> (Abschluss (0.6) -> P=0.18; Abbruch (0.4) -> P=0.12)], [Kein Klick (0.7) -> P=0.7]</p>
+                  </div>
+                  <h3>Aufgaben</h3>
+                  <ol>...</ol>
+              </section>
+
+             <section id="vierfeldertafel">
+                <h2>Vierfeldertafel</h2>
+                <!-- Inhalt direkt hier -->
+                <h3>Erklärung</h3>
+                <p>Eine <span class="tooltip" tabindex="0"><strong>Vierfeldertafel</strong><span class="tooltiptext">Tabelle zur Darstellung gemeinsamer Häufigkeiten/Wahrscheinlichkeiten von zwei Merkmalen.</span></span>...</p>
+                <!-- Tabelle als HTML -->
+                 <div class="table-container">
+                    <table>
+                        <caption>Struktur Vierfeldertafel (Wahrsch.)</caption>
+                        <thead>
+                            <tr><th></th><th>Merkmal B</th><th>Merkmal <span style="text-decoration: overline">B</span></th><th>Gesamt</th></tr>
+                        </thead>
+                         <tbody>
+                            <tr><th>Merkmal A</th><td>\(P(A \cap B)\)</td><td>\(P(A \cap \overline{B})\)</td><td>\(P(A)\)</td></tr>
+                             <tr><th>Merkmal <span style="text-decoration: overline">A</span></th><td>\(P(\overline{A} \cap B)\)</td><td>\(P(\overline{A} \cap \overline{B})\)</td><td>\(P(\overline{A})\)</td></tr>
+                             <tr><th>Gesamt</th><td>\(P(B)\)</td><td>\(P(\overline{B})\)</td><td>1</td></tr>
+                         </tbody>
+                     </table>
+                 </div>
+                 <p>Bedingte Wahrsch.: \(P_B(A) = \frac{P(A \cap B)}{P(B)}\)</p>
+                 <p>Unabhängigkeit: \(P(A \cap B) = P(A) \cdot P(B)\)</p>
+                <div class="infobox">...</div>
+                <h3>Beispiel: Nutzeranalyse</h3>
+                <p>500 Nutzer, A: Werbung gesehen, B: Gekauft...</p>
+                 <div class="table-container">
+                    <table>
+                        <caption>Nutzeranalyse (Wahrsch.)</caption>
+                        <thead>
+                            <tr><th></th><th>Gekauft (B)</th><th>Nicht gekauft (<span style="text-decoration: overline">B</span>)</th><th>Gesamt</th></tr>
+                        </thead>
+                         <tbody>
+                            <tr><th>Gesehen (A)</th><td>0.10</td><td>0.30</td><td>0.40</td></tr>
+                             <tr><th>Nicht Gesehen (<span style="text-decoration: overline">A</span>)</th><td>0.06</td><td>0.54</td><td>0.60</td></tr>
+                             <tr><th>Gesamt</th><td>0.16</td><td>0.84</td><td>1.00</td></tr>
+                         </tbody>
+                     </table>
+                 </div>
+                <p>\(P_A(B) = 0.10 / 0.40 = 0.25\). Nicht unabhängig, da \(0.10 \neq 0.40 \cdot 0.16\).</p>
+                 <h3>Aufgaben</h3>
+                 <ol>...</ol>
+             </section>
+
+              <section id="bayes">
+                 <h2>Satz von Bayes</h2>
+                 <!-- Inhalt direkt hier -->
+                  <h3>Erklärung</h3>
+                  <p>Der <strong>Satz von Bayes</strong> erlaubt das Umkehren bedingter Wahrscheinlichkeiten...</p>
+                  <p>\[ P_B(A) = \frac{P_A(B) \cdot P(A)}{P(B)} \]</p>
+                  <p>Mit \(P(B) = P_A(B) P(A) + P_{\overline{A}}(B) P(\overline{A})\) (Satz d. totalen Wahrsch.)</p>
+                  <div class="infobox">...</div>
+                  <h3>Beispiel: A/B-Testing</h3>
+                  <p>Layout A/B, P(A)=P(B)=0.5. Konversion K: P(K|A)=0.1, P(K|B)=0.15.</p>
+                  <p>Gesucht P(A|K)?</p>
+                  <p>1. Totale Wahrsch. P(K) = (0.1*0.5) + (0.15*0.5) = 0.125.</p>
+                  <p>2. Bayes: \(P_K(A) = \frac{P_A(K) P(A)}{P(K)} = \frac{0.1 \cdot 0.5}{0.125} = 0.4\)</p>
+                  <h3>Aufgaben</h3>
+                  <ol>...</ol>
+              </section>
+
+              <section id="binomialkoeffizient">
+                 <h2>Binomialkoeffizient ([TR])</h2>
+                 <!-- Inhalt direkt hier -->
+                  <h3>Erklärung</h3>
+                  <p>Der <strong>Binomialkoeffizient</strong> \(\binom{n}{k}\) ("n über k")...</p>
+                  <p>Anzahl Möglichkeiten, k aus n Objekten zu wählen (ohne Reihenfolge/Zurücklegen).</p>
+                  <p>\[ \binom{n}{k} = \frac{n!}{k! (n-k)!} \]</p>
+                  <p>Taschenrechner: <strong>[TR]</strong> nCr-Funktion.</p>
+                  <div class="infobox">...</div>
+                  <h3>Beispiel: Farbauswahl</h3>
+                  <p>3 Farben aus 8 wählen? \(\binom{8}{3} = \frac{8!}{3!5!} = 56\). (TR: 8 nCr 3).</p>
+                  <h3>Aufgaben</h3>
+                  <ol>...</ol>
+              </section>
+
+              <section id="binomialdichte">
+                 <h2>Binomialdichte ([TR])</h2>
+                 <!-- Inhalt direkt hier -->
+                 <h3>Erklärung</h3>
+                 <p>Die <strong>Binomialverteilung</strong> \(X \sim B(n, p)\) modelliert die Anzahl \(k\) der Erfolge in \(n\) unabhängigen Versuchen mit Erfolgswahrsch. \(p\).</p>
+                 <p><strong>Binomialdichte</strong> \(P(X=k)\) gibt die Wahrscheinlichkeit für <em>genau</em> k Erfolge:</p>
+                 <p>\[ P(X=k) = \binom{n}{k} p^k (1-p)^{n-k} \]</p>
+                 <p>Taschenrechner: <strong>[TR]</strong> binompdf(n, p, k).</p>
+                  <div class="infobox">...</div>
+                  <h3>Beispiel: Fehlerhafte Drucke</h3>
+                  <p>n=20, p=0.05 (Fehler). Wahrscheinlichkeit für genau k=2 Fehler?</p>
+                  <p>\(P(X=2) = \binom{20}{2} (0.05)^2 (0.95)^{18} \approx 0.1887\).</p>
+                  <p>(TR: binompdf(20, 0.05, 2)).</p>
+                  <div id="plotBinomialPDF" class="plotly-chart"></div>
+                  <h3>Aufgaben</h3>
+                  <ol>...</ol>
+              </section>
+
+              <section id="kumulierte_binomial">
+                 <h2>Kumulierte Binomialdichte ([TR])</h2>
+                 <!-- Inhalt direkt hier -->
+                  <h3>Erklärung</h3>
+                  <p>Die <strong>kumulierte Binomialverteilungsfunktion</strong> \(P(X \le k)\) gibt die Wahrscheinlichkeit für <em>höchstens</em> k Erfolge an.</p>
+                  <p>\[ P(X \le k) = \sum_{i=0}^{k} P(X=i) = \sum_{i=0}^{k} \binom{n}{i} p^i (1-p)^{n-i} \]</p>
+                  <p>Taschenrechner: <strong>[TR]</strong> binomcdf(n, p, k).</p>
+                  <p>Umrechnungen:</p>
+                  <ul>
+                      <li>\(P(X < k) = P(X \le k-1)\)</li>
+                      <li>\(P(X \ge k) = 1 - P(X \le k-1)\)</li>
+                      <li>\(P(X > k) = 1 - P(X \le k)\)</li>
+                      <li>\(P(k_1 \le X \le k_2) = P(X \le k_2) - P(X \le k_1-1)\)</li>
+                  </ul>
+                  <div class="infobox">...</div>
+                  <h3>Beispiel: Nutzerzufriedenheit</h3>
+                  <p>n=100, p=0.8 (intuitiv). \(X \sim B(100, 0.8)\).</p>
+                  <p>Höchstens 85? \(P(X \le 85)\) (TR: binomcdf(100, 0.8, 85)) \(\approx 0.9102\).</p>
+                  <p>Mindestens 75? \(P(X \ge 75) = 1 - P(X \le 74)\) (TR: 1 - binomcdf(100, 0.8, 74)) \(\approx 0.9124\).</p>
+                  <p>Zwischen 78 und 82? \(P(78 \le X \le 82) = P(X \le 82) - P(X \le 77)\) (TR: ...) \(\approx 0.5009\).</p>
+                  <div id="plotBinomialCDF" class="plotly-chart"></div>
+                  <h3>Aufgaben</h3>
+                  <ol>...</ol>
+              </section>
+
+        </article>
+    </main>
+
+    <footer>
+        <p>Interaktives Skript - © Heute</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

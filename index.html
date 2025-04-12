@@ -520,138 +520,331 @@
         <!-- ==================================================== -->
         <article id="teil2">
             <h1>Teil II: Vektorrechnung im 3D-Raum</h1>
-            <p>Die Vektorrechnung ist ein mächtiges Werkzeug...</p>
+            <p>Die Vektorrechnung ist ein mächtiges Werkzeug, nicht nur in der reinen Mathematik und Physik, sondern auch in kreativen und technischen Bereichen wie dem Design. Sie ermöglicht es uns, Positionen, Richtungen, Abstände und Winkel im dreidimensionalen Raum präzise zu beschreiben und zu berechnen. Dieser Teil führt in die Grundlagen der 3D-Vektorrechnung ein, mit Beispielen und Aufgaben aus dem Gestaltungskontext. Besonderes Augenmerk liegt auf der praktischen Anwendung, wobei für bestimmte Rechenschritte der Einsatz eines Taschenrechners <strong>[TR]</strong> empfohlen wird.</p>
 
              <section id="punkte3d">
                 <h2>Punkte im 3D-Raum</h2>
-                <!-- Inhalt direkt hier -->
                 <h3>Erklärung</h3>
-                <p>Ein Punkt wird durch drei Koordinaten (x, y, z) beschrieben...</p>
-                <div class="infobox">...</div>
+                <p>Ein Punkt im dreidimensionalen Raum wird durch drei <span class="tooltip" tabindex="0"><strong>Koordinaten</strong><span class="tooltiptext">Zahlen (x, y, z), die die Position relativ zum Ursprung angeben.</span></span> \((x, y, z)\) eindeutig beschrieben. Diese Koordinaten geben seine Position relativ zu einem <span class="tooltip" tabindex="0"><strong>Ursprung</strong><span class="tooltiptext">Der Punkt O(0,0,0), der Referenzpunkt im Koordinatensystem.</span></span> \(\mathrm{O}(0, 0, 0)\) in einem rechtshändigen Koordinatensystem an.</p>
+                <ul>
+                    <li>Die x-Achse zeigt typischerweise nach vorne (Tiefe).</li>
+                    <li>Die y-Achse zeigt typischerweise nach rechts (Breite).</li>
+                    <li>Die z-Achse zeigt typischerweise nach oben (Höhe).</li>
+                </ul>
+                <p>Die Wahl der Achsenorientierung kann je nach Anwendung variieren, wichtig ist die Konsistenz. Wir verwenden hier die oben genannte Konvention.</p>
+
+                <div class="infobox">
+                    <p><strong>💡 Punkt im 3D-Raum</strong></p>
+                    <p>Ein Punkt \(\mathrm{P}(x, y, z)\) ist einfach eine "Adresse" im Raum, definiert durch drei Zahlen (Koordinaten) relativ zum Ursprung \(\mathrm{O}(0,0,0)\). Er hat selbst keine Ausdehnung oder Richtung.</p>
+                </div>
+
                 <h3>Beispiel</h3>
-                <p>Eckpunkt A(30, 0, 10), Wandpunkt B(0, 50, 80).</p>
+                <p>Ein Designer entwirft ein Regalsystem. Ein Eckpunkt \(\mathrm{A}\) des unteren Regalfachs hat die Koordinaten \(\mathrm{A}(30, 0, 10)\) (Angaben in cm). Ein Befestigungspunkt \(\mathrm{B}\) an der Wand hat die Koordinaten \(\mathrm{B}(0, 50, 80)\).</p>
                 <div id="plotPunkt3D" class="plotly-chart"></div>
+
                 <h3>Aufgaben</h3>
-                <ol>...</ol>
+                <ol>
+                    <li>Ein Würfel mit Kantenlänge 5 cm steht mit einer Ecke im Ursprung \(\mathrm{O}(0,0,0)\). Eine Kante liegt entlang der positiven x-Achse, eine entlang der positiven y-Achse und eine entlang der positiven z-Achse. Geben Sie die Koordinaten aller 8 Eckpunkte an.</li>
+                    <li>Skizzieren Sie ein einfaches Stuhlmodell (nur Kanten) in einem 3D-Koordinatensystem und schätzen Sie die Koordinaten der wichtigsten Punkte (z.B. vier Sitzflächenecken, vier Fußpunkte am Boden). Wählen Sie den Ursprung sinnvoll.</li>
+                </ol>
             </section>
 
              <section id="vektoren_verschiebung">
                 <h2>Vektoren als Verschiebung & Ortsvektoren</h2>
-                <!-- Inhalt direkt hier -->
                  <h3>Erklärung</h3>
-                 <p>Ein Vektor \(\vec{v}\) beschreibt eine Verschiebung...</p>
-                 <p>\[ \vec{AB} = \punkt{B} - \punkt{A} = \begin{pmatrix} b_1 - a_1 \\ b_2 - a_2 \\ b_3 - a_3 \end{pmatrix} \]</p>
-                 <p>Ortsvektor \(\vec{p} = \vec{OP}\)...</p>
-                 <div class="infobox">...</div>
+                 <p>Ein <span class="tooltip" tabindex="0"><strong>Vektor</strong><span class="tooltiptext">Beschreibt eine Verschiebung (Richtung und Länge). Notation: Pfeil über Buchstabe oder Fettdruck.</span></span> beschreibt eine <strong>Verschiebung</strong> im Raum. Er hat eine Richtung und eine Länge (Betrag). Man kann ihn sich als Pfeil vorstellen, der von einem Startpunkt zu einem Endpunkt zeigt.<br>
+                 Der Vektor \(\vec{AB}\), der vom Punkt \(\mathrm{A}(a_1, a_2, a_3)\) zum Punkt \(\mathrm{B}(b_1, b_2, b_3)\) führt, berechnet sich als "<span class="tooltip" tabindex="0"><strong>Spitze minus Fuß</strong><span class="tooltiptext">Merkregel: Koordinaten des Endpunktes (Spitze des Pfeils) minus Koordinaten des Anfangspunktes (Fuß des Pfeils).</span></span>":</p>
+                 <p>\[ \vec{v} = \vec{AB} = \mathrm{B} - \mathrm{A} = \begin{pmatrix} b_1 - a_1 \\ b_2 - a_2 \\ b_3 - a_3 \end{pmatrix} \]</p>
+                 <p>Ein besonderer Vektor ist der <span class="tooltip" tabindex="0"><strong>Ortsvektor</strong><span class="tooltiptext">Vektor vom Ursprung O(0,0,0) zum Punkt P. Seine Komponenten sind identisch mit den Koordinaten von P.</span></span> eines Punktes \(\mathrm{P}(p_1, p_2, p_3)\). Dies ist der Vektor, der vom Ursprung \(\mathrm{O}\) zum Punkt \(\mathrm{P}\) zeigt:</p>
+                 <p>\[ \vec{p} = \vec{OP} = \mathrm{P} - \mathrm{O} = \begin{pmatrix} p_1 \\ p_2 \\ p_3 \end{pmatrix} \]</p>
+                 <p>Der Ortsvektor hat dieselben Komponenten wie der Punkt Koordinaten hat. Die Formel "Spitze minus Fuß" kann man auch mit Ortsvektoren schreiben: \(\vec{AB} = \vec{b} - \vec{a}\).<br>
+                 Vektoren werden oft als Spaltenvektoren geschrieben. Der Vektor \(\begin{pmatrix} v_x \\ v_y \\ v_z \end{pmatrix}\) gibt an, wie weit man sich in x-, y-, und z-Richtung bewegt.</p>
+
+                 <div class="infobox">
+                    <p><strong>💡 Vektor als Verschiebung</strong></p>
+                    <p>Ein Vektor \(\vec{AB}\) ist wie eine Wegbeschreibung von Punkt A nach Punkt B: \(\vec{AB} = \mathrm{B} - \mathrm{A}\).<br>
+                    Der Ortsvektor \(\vec{p}\) eines Punktes \(\mathrm{P}\) ist die Verschiebung vom Ursprung \(\mathrm{O}\) zu \(\mathrm{P}\), also \(\vec{p} = \vec{OP}\).</p>
+                 </div>
+
                  <h3>Beispiel</h3>
-                 <p>\(\vec{AB} = \begin{pmatrix} -30 \\ 50 \\ 70 \end{pmatrix}\)</p>
+                 <p>Verschiebung vom Regalpunkt \(\mathrm{A}(30, 0, 10)\) zum Wandpunkt \(\mathrm{B}(0, 50, 80)\):</p>
+                 <p>\[ \vec{AB} = \mathrm{B} - \mathrm{A} = \begin{pmatrix} 0 - 30 \\ 50 - 0 \\ 80 - 10 \end{pmatrix} = \begin{pmatrix} -30 \\ 50 \\ 70 \end{pmatrix} \]</p>
+                 <p>Bedeutung: 30 cm zurück (entlang x), 50 cm nach rechts (entlang y), 70 cm nach oben (entlang z).</p>
                  <div id="plotVektorAB" class="plotly-chart"></div>
+
                  <h3>Aufgaben</h3>
-                 <ol>...</ol>
+                 <ol>
+                    <li>Gegeben sind \(\mathrm{C}(10, 20, 5)\) und \(\mathrm{D}(15, 10, 30)\) (Tischkante). Berechnen Sie \(\vec{CD}\).</li>
+                    <li>Lichtquelle \(\mathrm{L}(100, 150, 200)\), Objekt \(\mathrm{O}_{bj}(50, 50, 0)\). Bestimmen Sie den Vektor \(\vec{LO_{bj}}\) (von L nach O_bj).</li>
+                    <li>Berechnen Sie zu den Punkten aus Aufgabe 1 die Ortsvektoren \(\vec{c}\) und \(\vec{d}\). Bestätigen Sie, dass \(\vec{d} - \vec{c}\) denselben Vektor \(\vec{CD}\) ergibt.</li>
+                 </ol>
             </section>
 
             <section id="vektorlaenge">
                 <h2>Vektorlänge (Betrag)</h2>
-                <!-- Inhalt direkt hier -->
                  <h3>Erklärung</h3>
-                 <p>Die Länge (Betrag) eines Vektors \(\vec{v}\)...</p>
+                 <p>Die <span class="tooltip" tabindex="0"><strong>Länge</strong> (oder der <strong>Betrag</strong>)<span class="tooltiptext">Die "Größe" oder "Magnitude" eines Vektors, ein Skalar (Zahl ohne Richtung). Notation: |v⃗|.</span></span> eines Vektors \(\vec{v} = \begin{pmatrix} v_x \\ v_y \\ v_z \end{pmatrix}\) gibt an, wie "lang" der Pfeil ist. Sie entspricht dem Abstand zwischen Start- und Endpunkt der Verschiebung. Berechnung mit dem dreidimensionalen Satz des Pythagoras:</p>
                  <p>\[ |\vec{v}| = \sqrt{v_x^2 + v_y^2 + v_z^2} \]</p>
-                 <div class="infobox">...</div>
+                 <p>Die Länge ist immer nicht-negativ (\(\ge 0\)). Nur der Nullvektor \(\vec{0} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}\) hat die Länge 0.<br>
+                 Der Betrag \(|\vec{AB}|\) ist gleich dem Abstand zwischen den Punkten \(\mathrm{A}\) und \(\mathrm{B}\).</p>
+
+                 <div class="infobox">
+                    <p><strong>💡 Länge (Betrag) eines Vektors</strong></p>
+                    <p>Die Länge \(|\vec{v}|\) von \(\vec{v} = \begin{pmatrix} v_x \\ v_y \\ v_z \end{pmatrix}\) ist \(\sqrt{v_x^2 + v_y^2 + v_z^2}\).<br>
+                    Sie gibt den Abstand an, den der Vektor überbrückt. \(|\vec{AB}|\) ist der Abstand von \(\mathrm{A}\) nach \(\mathrm{B}\).</p>
+                 </div>
+
                  <h3>Beispiel</h3>
-                 <p>\(|\vec{AB}| = \sqrt{(-30)^2 + 50^2 + 70^2} = \sqrt{8300} \approx 91.10\)</p>
+                 <p>Länge des Vektors \(\vec{AB} = \begin{pmatrix} -30 \\ 50 \\ 70 \end{pmatrix}\) (Abstand A zu B):</p>
+                 <p>\[ |\vec{AB}| = \sqrt{(-30)^2 + 50^2 + 70^2} = \sqrt{900 + 2500 + 4900} = \sqrt{8300} \]</p>
+                 <p>Mit dem Taschenrechner: \(\sqrt{8300} \approx 91.10\) cm.</p>
                  <div id="plotVektorLaenge" class="plotly-chart"></div>
+
                  <h3>Aufgaben</h3>
-                 <ol>...</ol>
+                 <ol>
+                    <li>Berechnen Sie die Länge der Tischkante \(\vec{CD} = \begin{pmatrix} 5 \\ -10 \\ 25 \end{pmatrix}\) aus Aufgabe 2.</li>
+                    <li>Ein Seil soll zwischen \(\mathrm{P}(0, 0, 250)\) und \(\mathrm{Q}(100, 50, 20)\) gespannt werden. Wie lang muss das Seil mindestens sein (Abstand P zu Q)?</li>
+                    <li>Berechne die Längen der Ortsvektoren \(\vec{a}=\begin{pmatrix} 30\\0\\10 \end{pmatrix}\) und \(\vec{b}=\begin{pmatrix} 0\\50\\80 \end{pmatrix}\) aus Beispiel 1.</li>
+                 </ol>
              </section>
 
             <section id="skalarprodukt">
                 <h2>Skalarprodukt & Orthogonalität</h2>
-                <!-- Inhalt direkt hier -->
                  <h3>Erklärung</h3>
-                 <p>Das Skalarprodukt zweier Vektoren \(\vec{a}\) und \(\vec{b}\)...</p>
+                 <p>Das <span class="tooltip" tabindex="0"><strong>Skalarprodukt</strong> (oder Punktprodukt)<span class="tooltiptext">Eine Rechenoperation zwischen zwei Vektoren, deren Ergebnis eine Zahl (Skalar) ist. Notation: a⃗ ⋅ b⃗.</span></span> zweier Vektoren \(\vec{a} = \begin{pmatrix} a_x \\ a_y \\ a_z \end{pmatrix}\) und \(\vec{b} = \begin{pmatrix} b_x \\ b_y \\ b_z \end{pmatrix}\) ist eine <strong>Zahl</strong> (ein Skalar), berechnet als:</p>
                  <p>\[ \vec{a} \cdot \vec{b} = a_x b_x + a_y b_y + a_z b_z \]</p>
-                 <p>Wichtig: \(\vec{a} \cdot \vec{b} = 0 \iff \vec{a} \perp \vec{b}\)</p>
-                 <div class="infobox">...</div>
+                 <p>Wichtige geometrische Bedeutungen:</p>
+                 <ul>
+                    <li><strong>Orthogonalität (Senkrechtstehen):</strong> Wenn \(\vec{a} \cdot \vec{b} = 0\) ist (und \(\vec{a}, \vec{b} \neq \vec{0}\)), stehen die Vektoren <span class="tooltip" tabindex="0"><strong>senkrecht</strong> (orthogonal)<span class="tooltiptext">Die Vektoren bilden einen Winkel von 90° zueinander.</span></span> zueinander: \(\vec{a} \perp \vec{b}\). Dies ist die wichtigste Anwendung!</li>
+                    <li>Es hängt mit dem Winkel \(\alpha\) zwischen den Vektoren zusammen: \(\vec{a} \cdot \vec{b} = |\vec{a}| |\vec{b}| \cos \alpha\).</li>
+                 </ul>
+                 <p>Es gilt: \(\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}\) (kommutativ) und \(\vec{a} \cdot \vec{a} = |\vec{a}|^2\).</p>
+
+                 <div class="infobox">
+                    <p><strong>💡 Skalarprodukt \(\vec{a} \cdot \vec{b}\)</strong></p>
+                    <p>Berechnung: \(a_x b_x + a_y b_y + a_z b_z\). Ergebnis ist eine Zahl.<br>
+                    <strong>Wichtigste Anwendung:</strong> \(\vec{a} \cdot \vec{b} = 0 \iff \vec{a} \perp \vec{b}\) (für \(\vec{a}, \vec{b} \neq \vec{0}\)).</p>
+                 </div>
+
                  <h3>Beispiel</h3>
-                 <p>\(\vec{u} = \begin{pmatrix} 2 \\ 3 \\ -1 \end{pmatrix}, \vec{v} = \begin{pmatrix} 4 \\ -2 \\ 2 \end{pmatrix} \implies \vec{u} \cdot \vec{v} = 8 - 6 - 2 = 0 \implies \perp\)</p>
+                 <p>Prüfung auf Orthogonalität: Streben \(\vec{u} = \begin{pmatrix} 2 \\ 3 \\ -1 \end{pmatrix}\) und \(\vec{v} = \begin{pmatrix} 4 \\ -2 \\ 2 \end{pmatrix}\).</p>
+                 <p>\[ \vec{u} \cdot \vec{v} = (2)(4) + (3)(-2) + (-1)(2) = 8 - 6 - 2 = 0 \] </p>
+                 <p>Da das Skalarprodukt 0 ist, stehen die Streben senkrecht zueinander.</p>
+
                  <h3>Aufgaben</h3>
-                 <ol>...</ol>
+                 <ol>
+                    <li>Gegeben \(\vec{p} = \begin{pmatrix} 1 \\ -2 \\ 5 \end{pmatrix}\) und \(\vec{q} = \begin{pmatrix} 3 \\ 8 \\ 3 \end{pmatrix}\). Berechnen Sie \(\vec{p} \cdot \vec{q}\). Sind sie orthogonal?</li>
+                    <li>Rahmenteile \(\vec{r} = \begin{pmatrix} -1 \\ 0 \\ 4 \end{pmatrix}\) und \(\vec{s} = \begin{pmatrix} 0 \\ 5 \\ 0 \end{pmatrix}\). Sind sie orthogonal? Berechne \(\vec{r} \cdot \vec{s}\).</li>
+                    <li>Überprüfen Sie, ob die Standardbasisvektoren \(\vec{e}_x = \begin{pmatrix} 1\\0\\0 \end{pmatrix}\), \(\vec{e}_y = \begin{pmatrix} 0\\1\\0 \end{pmatrix}\), \(\vec{e}_z = \begin{pmatrix} 0\\0\\1 \end{pmatrix}\) paarweise orthogonal sind.</li>
+                 </ol>
             </section>
 
             <section id="winkel">
-                <h2>Winkel zwischen Vektoren ([TR])</h2>
-                <!-- Inhalt direkt hier -->
-                <h3>Erklärung</h3>
-                <p>Der Winkel \(\alpha\) zwischen \(\vec{a}\) und \(\vec{b}\)...</p>
-                <p>\[ \cos \alpha = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}| |\vec{b}|} \implies \alpha = \arccos \left( \frac{\vec{a} \cdot \vec{b}}{|\vec{a}| |\vec{b}|} \right) \] </p>
-                <div class="infobox">...</div>
-                <h3>Beispiel</h3>
-                <p>\(\vec{a} = \begin{pmatrix} 10 \\ 0 \\ 5 \end{pmatrix}, \vec{b} = \begin{pmatrix} 0 \\ 10 \\ 5 \end{pmatrix} \implies \dots \implies \cos \alpha = 0.2 \implies \alpha \approx 78.46^\circ\)</p>
-                <div id="plotWinkelVektoren" class="plotly-chart"></div>
-                <h3>Aufgaben</h3>
-                <ol>...</ol>
+                <h2>Winkel zwischen Vektoren (<strong>[TR]</strong>)</h2>
+                 <h3>Erklärung</h3>
+                 <p>Der Winkel \(\alpha\) zwischen zwei Vektoren \(\vec{a}\) und \(\vec{b}\) (die nicht Nullvektoren sind und vom selben Punkt ausgehen) kann mit dem Skalarprodukt berechnet werden:</p>
+                 <p>\[ \cos \alpha = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}| |\vec{b}|} \] </p>
+                 <p>Den Winkel \(\alpha\) erhält man mit der <span class="tooltip" tabindex="0"><strong>Arkuskosinus</strong><span class="tooltiptext">Die Umkehrfunktion des Kosinus (cos⁻¹ oder acos). Liefert den Winkel zu einem Kosinuswert.</span></span>-Funktion:</p>
+                 <p>\[ \alpha = \arccos \left( \frac{\vec{a} \cdot \vec{b}}{|\vec{a}| |\vec{b}|} \right) \] </p>
+                 <p>Der Winkel liegt immer im Bereich \(0^\circ \le \alpha \le 180^\circ\).</p>
+                 <p>Die Berechnung von \(\arccos\) erfolgt mit dem <strong>Taschenrechner</strong> <strong>[TR]</strong> (auf DEG für Grad oder RAD für Bogenmaß einstellen).</p>
+
+                 <div class="infobox">
+                    <p><strong>💡 Winkel \(\alpha\) zwischen Vektoren \(\vec{a}\) und \(\vec{b}\)</strong></p>
+                    <ol>
+                        <li>Berechne Skalarprodukt: \(S = \vec{a} \cdot \vec{b}\).</li>
+                        <li>Berechne Längen: \(L_a = |\vec{a}|\), \(L_b = |\vec{b}|\).</li>
+                        <li>Berechne Kosinus: \(\cos \alpha = \frac{S}{L_a \cdot L_b}\).</li>
+                        <li>Berechne Winkel mit <strong>[TR]</strong>: \(\alpha = \arccos \left( \frac{S}{L_a \cdot L_b} \right)\).</li>
+                    </ol>
+                 </div>
+
+                 <h3>Beispiel</h3>
+                 <p>Winkel zwischen Kanten \(\vec{a} = \begin{pmatrix} 10 \\ 0 \\ 5 \end{pmatrix}\) und \(\vec{b} = \begin{pmatrix} 0 \\ 10 \\ 5 \end{pmatrix}\).</p>
+                 <ol>
+                    <li>Skalarprodukt: \(\vec{a} \cdot \vec{b} = 25\).</li>
+                    <li>Längen: \(|\vec{a}| = \sqrt{125}\), \(|\vec{b}| = \sqrt{125}\).</li>
+                    <li>Kosinus: \(\cos \alpha = \frac{25}{\sqrt{125} \cdot \sqrt{125}} = \frac{25}{125} = 0.2\).</li>
+                    <li>Winkel mit <strong>[TR]</strong>: \(\alpha = \arccos(0.2) \approx 78.46^\circ\).</li>
+                 </ol>
+                 <div id="plotWinkelVektoren" class="plotly-chart"></div>
+
+                 <h3>Aufgaben</h3>
+                 <ol>
+                    <li>Berechnen Sie den Winkel zwischen \(\vec{p} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}\) und \(\vec{q} = \begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix}\). Prüfen Sie erst das Skalarprodukt! Bestätigen Sie mit <strong>[TR]</strong>.</li>
+                    <li>Lichtstrahl \(\vec{l} = \begin{pmatrix} -1 \\ -1 \\ -2 \end{pmatrix}\), Oberfläche \(\vec{s} = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}\). Berechnen Sie den Winkel zwischen \(\vec{l}\) und \(\vec{s}\) mit <strong>[TR]</strong>.</li>
+                    <li>Bestimmen Sie den Winkel zwischen der Raumdiagonalen eines Würfels (Vektor \(\begin{pmatrix} 1\\1\\1 \end{pmatrix}\)) und einer Kante (Vektor \(\begin{pmatrix} 1\\0\\0 \end{pmatrix}\)).</li>
+                 </ol>
             </section>
 
             <section id="geraden">
                 <h2>Geradengleichung (Parameterform)</h2>
-                <!-- Inhalt direkt hier -->
                  <h3>Erklärung</h3>
-                 <p>Eine Gerade \(g\) im Raum...</p>
+                 <p>Eine Gerade \(g\) im Raum wird durch einen Punkt \(\mathrm{P}\) auf der Geraden (<span class="tooltip" tabindex="0"><strong>Stützpunkt</strong><span class="tooltiptext">Ein bekannter Punkt, der auf der Geraden liegt. Sein Ortsvektor ist der Stützvektor.</span></span>) und einen <span class="tooltip" tabindex="0"><strong>Richtungsvektor</strong><span class="tooltiptext">Ein Vektor, der parallel zur Geraden verläuft und ihre Richtung angibt.</span></span> \(\vec{u}\) beschrieben. Die <span class="tooltip" tabindex="0"><strong>Parameterform</strong><span class="tooltiptext">Eine Darstellung der Geraden mithilfe eines Stützvektors, eines Richtungsvektors und eines Parameters t.</span></span> lautet:</p>
                  <p>\[ g: \vec{x} = \vec{p} + t \cdot \vec{u} \]</p>
-                 <p>\(\vec{p}\) Stützvektor, \(\vec{u}\) Richtungsvektor, \(t\) Parameter.</p>
-                 <div class="infobox">...</div>
+                 <p>Dabei ist:</p>
+                 <ul>
+                    <li>\(\vec{x}\) der Ortsvektor eines beliebigen Punktes \(\mathrm{X}\) auf der Geraden.</li>
+                    <li>\(\vec{p}\) der Ortsvektor des Stützpunktes \(\mathrm{P}\) (<span class="tooltip" tabindex="0"><strong>Stützvektor</strong><span class="tooltiptext">Der Ortsvektor des Stützpunktes P, also der Vektor vom Ursprung O zu P.</span></span>).</li>
+                    <li>\(\vec{u}\) der Richtungsvektor (\(\vec{u} \neq \vec{0}\)).</li>
+                    <li>\(t\) ein <span class="tooltip" tabindex="0"><strong>Parameter</strong><span class="tooltiptext">Eine reelle Zahl, die durchläuft und so alle Punkte der Geraden erzeugt.</span></span> (beliebige reelle Zahl).</li>
+                 </ul>
+                 <p>Sind zwei Punkte \(\mathrm{P}\) und \(\mathrm{Q}\) gegeben, wählt man z.B. \(\vec{p}\) als Stützvektor und \(\vec{u} = \vec{PQ} = \vec{q} - \vec{p}\) als Richtungsvektor.</p>
+
+                 <div class="infobox">
+                    <p><strong>💡 Geradengleichung in Parameterform</strong></p>
+                    <p>Formel: \(g: \vec{x} = \vec{p} + t \cdot \vec{u}\).<br>
+                    Erzeugt alle Punkte \(\vec{x}\) auf der Geraden, indem man vom Startpunkt \(\vec{p}\) aus \(t\)-mal in die Richtung \(\vec{u}\) geht.</p>
+                 </div>
+
                  <h3>Beispiel</h3>
-                 <p>Lampenachse durch \(P(50,50,0)\) nach oben:</p>
+                 <p>Achse eines Lampenfußes, beginnt bei \(\mathrm{P}(50, 50, 0)\), verläuft senkrecht nach oben.</p>
+                 <p>Stützvektor \(\vec{p} = \begin{pmatrix} 50 \\ 50 \\ 0 \end{pmatrix}\). Richtung nach oben: \(\vec{u} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\).</p>
                  <p>\[ g: \vec{x} = \begin{pmatrix} 50 \\ 50 \\ 0 \end{pmatrix} + t \cdot \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \]</p>
+                 <p>Für \(t=100\) erhält man \(\mathrm{X}(50, 50, 100)\).</p>
                  <div id="plotGerade3D" class="plotly-chart"></div>
+
                  <h3>Aufgaben</h3>
-                 <ol>...</ol>
+                 <ol>
+                    <li>Geben Sie die Geradengleichung für eine Würfelkante von \(\mathrm{A}(5, 0, 0)\) nach \(\mathrm{B}(5, 5, 0)\) an.</li>
+                    <li>Laserstrahl von \(\mathrm{S}(0, 0, 100)\) nach \(\mathrm{Z}(50, 50, 0)\). Geben Sie die Geradengleichung an. Welchen Punkt trifft der Strahl für \(t=0.5\)? Was bedeutet \(t=1\)?</li>
+                 </ol>
             </section>
 
             <section id="lage_punkt_gerade">
                 <h2>Lage: Punkt/Gerade</h2>
-                <!-- Inhalt direkt hier -->
-                 <h3>Erklärung</h3>
-                 <p>Liegt Punkt \(\punkt{K}\) auf \(g: \vec{x} = \vec{p} + t \vec{u}\)? Punktprobe!</p>
-                 <p>Setze \(\vec{k} = \vec{p} + t \vec{u}\) und löse nach \(t\). Eindeutige Lösung für \(t\)? Ja \(\implies\) drauf. Nein \(\implies\) nicht drauf.</p>
-                 <div class="infobox">...</div>
+                 <h3>Erklärung: Liegt ein Punkt auf einer Geraden?</h3>
+                 <p>Um zu prüfen, ob Punkt \(\mathrm{K}\) (Ortsvektor \(\vec{k}\)) auf Gerade \(g: \vec{x} = \vec{p} + t \vec{u}\) liegt, macht man eine <span class="tooltip" tabindex="0"><strong>Punktprobe</strong><span class="tooltiptext">Einsetzen der Koordinaten des Punktes in die Geraden-/Ebenengleichung, um zu prüfen, ob die Gleichung(en) erfüllt sind.</span></span>:</p>
+                 <p>\[ \vec{k} \stackrel{?}{=} \vec{p} + t \vec{u} \]</p>
+                 <p>Dies ergibt ein LGS mit bis zu 3 Gleichungen für die Unbekannte \(t\).</p>
+                 <p>Man löst jede Gleichung nach \(t\).</p>
+                 <ul>
+                    <li>Alle Gleichungen ergeben denselben Wert für \(t\) \(\implies\) Punkt liegt auf der Geraden.</li>
+                    <li>Unterschiedliche Werte für \(t\) oder Widerspruch \(\implies\) Punkt liegt nicht auf der Geraden.</li>
+                 </ul>
+
+                 <div class="infobox">
+                    <p><strong>💡 Punktprobe: Liegt \(\mathrm{K}\) auf \(g: \vec{x} = \vec{p} + t \vec{u}\)?</strong></p>
+                    <ol>
+                        <li>Setze \(\vec{k} = \vec{p} + t \vec{u}\).</li>
+                        <li>Schreibe die 3 Koordinaten-Gleichungen auf.</li>
+                        <li>Löse jede nach \(t\) auf.</li>
+                        <li>Vergleiche die Ergebnisse: Überall gleich? \(\implies\) Ja. Unterschiedlich/Widerspruch? \(\implies\) Nein.</li>
+                    </ol>
+                 </div>
+
                  <h3>Beispiel</h3>
-                 <p>Liegt \(K(50,50,200)\) auf \(g: \vec{x} = \begin{pmatrix} 50 \\ 50 \\ 0 \end{pmatrix} + t \cdot \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\)?</p>
-                 <p>x: \(50=50\). y: \(50=50\). z: \(200=t\). Ja, für \(t=200\).</p>
-                 <p>Liegt \(L(60,50,100)\) auf \(g\)? x: \(60=50\) (falsch!) \(\implies\) Nein.</p>
+                 <p>Liegt \(\mathrm{K}(50, 50, 200)\) auf \(g: \vec{x} = \begin{pmatrix} 50 \\ 50 \\ 0 \end{pmatrix} + t \cdot \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\)?</p>
+                 <p>\[ \begin{pmatrix} 50 \\ 50 \\ 200 \end{pmatrix} = \begin{pmatrix} 50 \\ 50 \\ 0 \end{pmatrix} + t \cdot \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \]</p>
+                 <p>x: \(50 = 50 + 0t \implies 50=50\) (wahr)<br>
+                 y: \(50 = 50 + 0t \implies 50=50\) (wahr)<br>
+                 z: \(200 = 0 + 1t \implies t=200\)<br>
+                 Ja, für \(t=200\) liegt K auf g.</p>
+                 <p>Liegt \(\mathrm{L}(60, 50, 100)\) auf \(g\)?</p>
+                 <p>x: \(60 = 50 + 0t \implies 60 = 50\) (falsch!) \(\implies\) Nein, L liegt nicht auf g.</p>
+
                  <h3>Aufgaben</h3>
-                 <ol>...</ol>
+                 <ol>
+                    <li>Prüfen Sie, ob \(\mathrm{M}(5, 2.5, 0)\) auf der Würfelkante \(g: \vec{x} = \begin{pmatrix} 5 \\ 0 \\ 0 \end{pmatrix} + t \cdot \begin{pmatrix} 0 \\ 5 \\ 0 \end{pmatrix}\) liegt.</li>
+                    <li>Liegt der Ursprung \(\mathrm{O}(0,0,0)\) auf dem Laserstrahl \(g: \vec{x} = \begin{pmatrix} 0 \\ 0 \\ 100 \end{pmatrix} + t \cdot \begin{pmatrix} 50 \\ 50 \\ -100 \end{pmatrix}\)?</li>
+                 </ol>
              </section>
 
             <section id="lage_gerade_gerade">
-                <h2>Lage: Gerade/Gerade ([TR])</h2>
-                <!-- Inhalt direkt hier -->
+                <h2>Lage: Gerade/Gerade (<strong>[TR]</strong>)</h2>
                  <h3>Erklärung</h3>
-                 <p>Lage von \(g: \vec{x} = \vec{p} + t \vec{u}\) und \(h: \vec{x} = \vec{q} + s \vec{v}\)?</p>
+                 <p>Zwei Geraden \(g: \vec{x} = \vec{p} + t \vec{u}\) und \(h: \vec{x} = \vec{q} + s \vec{v}\) können vier Lagebeziehungen haben:</p>
                  <ol>
-                     <li>Richtungsvektoren \(\vec{u}, \vec{v}\) kollinear? Ja \(\to\) 2, Nein \(\to\) 3.</li>
-                     <li>Punktprobe Stützpunkt \(\punkt{P}\) auf \(h\)? Ja \(\implies\) identisch. Nein \(\implies\) parallel.</li>
-                     <li>Gleichsetzen \(\vec{p} + t \vec{u} = \vec{q} + s \vec{v}\). LGS lösen. Eindeutige Lösung \((t,s)\)? Ja \(\implies\) schneidend. Nein \(\implies\) windschief.</li>
+                    <li><strong>Identisch</strong></li>
+                    <li><strong>Parallel (echt)</strong></li>
+                    <li><strong>Schneidend</strong></li>
+                    <li><strong>Windschief</strong></li>
                  </ol>
-                 <div class="infobox">...</div>
+
+                 <p><strong>Schema zur Untersuchung:</strong></p>
+                 <ol>
+                    <li><strong>Richtungsvektoren \(\vec{u}, \vec{v}\) prüfen:</strong> Sind sie <span class="tooltip" tabindex="0"><strong>kollinear</strong><span class="tooltiptext">Vektoren sind Vielfache voneinander (zeigen in die gleiche oder entgegengesetzte Richtung). u⃗ = k * v⃗.</span></span> (\(\vec{u} = k \cdot \vec{v}\))?
+                        <ul>
+                            <li>JA \(\implies\) Parallel oder identisch. \(\to\) Schritt 2.</li>
+                            <li>NEIN \(\implies\) Schneidend oder windschief. \(\to\) Schritt 3.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Parallelitätstest (nur wenn kollinear):</strong> Punktprobe: Liegt Stützpunkt \(\mathrm{P}\) von \(g\) auf \(h\)?
+                        <ul>
+                            <li>JA \(\implies\) Identisch.</li>
+                            <li>NEIN \(\implies\) Echt parallel.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Schnittpunktsuche (nur wenn nicht kollinear):</strong> Gleichsetzen \(\vec{p} + t \vec{u} = \vec{q} + s \vec{v}\). Ergibt LGS für \(t, s\). Lösen (<strong>[TR]</strong>).
+                        <ul>
+                            <li>Genau eine Lösung \((t_0, s_0)\) \(\implies\) Schneidend. Schnittpunkt \(\vec{s} = \vec{p} + t_0 \vec{u}\).</li>
+                            <li>Keine Lösung (Widerspruch) \(\implies\) Windschief.</li>
+                        </ul>
+                    </li>
+                 </ol>
+
+                 <div class="infobox">
+                    <p><strong>💡 Lage zweier Geraden \(g\) und \(h\)</strong></p>
+                    <ol>
+                        <li>RV \(\vec{u}, \vec{v}\) kollinear?</li>
+                        <li>Ja: Punktprobe P auf h? Ja \(\implies\) identisch. Nein \(\implies\) parallel.</li>
+                        <li>Nein: Gleichsetzen \(\vec{p} + t\vec{u} = \vec{q} + s\vec{v}\). LGS aufstellen.</li>
+                        <li>LGS lösen (<strong>[TR]</strong>): Eindeutige Lösung? Ja \(\implies\) schneidend. Nein \(\implies\) windschief.</li>
+                    </ol>
+                 </div>
+
                  <h3>Beispiel 1: Parallel/Identisch</h3>
                  <p>\(g: \vec{x} = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix} + t \begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix}\), \(h: \vec{x} = \begin{pmatrix} 0 \\ 2 \\ 4 \end{pmatrix} + s \begin{pmatrix} -2 \\ 0 \\ 2 \end{pmatrix}\).</p>
-                 <p>RV sind kollinear (\(k=-2\)). Punktprobe P(1,2,3) auf h ergibt \(s=-0.5\). \(\implies\) Identisch.</p>
+                 <p>1. RV sind kollinear (\(\vec{v} = -2 \vec{u}\)).<br>
+                 2. Punktprobe P(1,2,3) auf h: ergibt \(s = -0.5\) (konsistent). \(\implies\) Identisch.</p>
+
                  <h3>Beispiel 2: Schneidend/Windschief</h3>
                  <p>\(g: \vec{x} = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix} + t \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}\), \(h: \vec{x} = \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} + s \begin{pmatrix} 2 \\ -1 \\ 0 \end{pmatrix}\).</p>
-                 <p>RV nicht kollinear. Gleichsetzen \(\implies\) LGS. Lösung ergibt \(t=1\) und \(s=1\) sowie \(s=-2\). Widerspruch! \(\implies\) Windschief.</p>
+                 <p>1. RV nicht kollinear.<br>
+                 3. Gleichsetzen \(\implies\) LGS:<br>
+                 (I) \(1+t=2s\) (II) \(1+2t=1-s\) (III) \(t=1\)<br>
+                 Aus (III): \(t=1\). In (I): \(1+1=2s \implies s=1\). In (II): \(1+2(1)=1-s \implies 3=1-s \implies s=-2\).<br>
+                 Widerspruch (\(s=1\) vs \(s=-2\)). \(\implies\) Windschief.</p>
                  <div id="plotLageGeraden" class="plotly-chart"></div>
+
                  <h3>Aufgaben</h3>
-                 <ol>...</ol>
+                 <ol>
+                    <li>Lage von \(g: \vec{x} = \begin{pmatrix} 0\\0\\0 \end{pmatrix} + t \begin{pmatrix} 1\\1\\0 \end{pmatrix}\) und \(h: \vec{x} = \begin{pmatrix} 0\\0\\5 \end{pmatrix} + s \begin{pmatrix} 1\\1\\0 \end{pmatrix}\)?</li>
+                    <li>Lage von \(g: \vec{x} = \begin{pmatrix} 2\\1\\4 \end{pmatrix} + t \begin{pmatrix} -1\\1\\2 \end{pmatrix}\) und \(h: \vec{x} = \begin{pmatrix} 1\\2\\6 \end{pmatrix} + s \begin{pmatrix} 1\\0\\1 \end{pmatrix}\)? (<strong>[TR]</strong>). Schnittpunkt?</li>
+                    <li>Lage von \(g: \vec{x} = \begin{pmatrix} 1\\1\\1 \end{pmatrix} + t \begin{pmatrix} 2\\0\\-1 \end{pmatrix}\) und \(h: \vec{x} = \begin{pmatrix} 3\\1\\0 \end{pmatrix} + s \begin{pmatrix} -4\\0\\2 \end{pmatrix}\)?</li>
+                 </ol>
              </section>
 
             <section id="vektor_aufgaben">
                 <h2>Vertiefende Aufgaben</h2>
-                <!-- Inhalt direkt hier -->
                  <ol>
-                     <li><strong>Tischgestell:</strong> ...</li>
-                     <li><strong>Lampe:</strong> ...</li>
-                     <li><strong>Fachwerk:</strong> ...</li>
+                     <li><strong>Entwurf eines einfachen Tischgestells:</strong><br>
+                        Eckpunkte Platte \(\mathrm{A}(0,0,70), \mathrm{B}(120,0,70), \mathrm{C}(120,60,70), \mathrm{D}(0,60,70)\). Fußpunkte \(\mathrm{A}'(0,0,0), \mathrm{B}'(120,0,0), \mathrm{C}'(120,60,0), \mathrm{D}'(0,60,0)\).
+                        <ul>
+                            <li>a) Berechnen Sie Vektor \(\vec{A'C'}\) und seine Länge.</li>
+                            <li>b) Geradengleichung für Bein \(\overline{CC'}\).</li>
+                            <li>c) Winkel zwischen Kante \(\vec{AB}\) und Diagonale \(\vec{AC}\) (<strong>[TR]</strong>).</li>
+                            <li>d) Querstrebe von Mittelpunkt \(\mathrm{M}_{A'B'}\) zu \(\mathrm{M}_{C'D'}\). Koordinaten? Länge? (Tipp: Mittelpunkt \(\vec{m}_{AB} = \frac{1}{2}(\vec{a}+\vec{b})\)).</li>
+                        </ul>
+                    </li>
+                     <li><strong>Positionierung einer Lampe:</strong><br>
+                        Lampe \(\mathrm{L}(50,50,180)\). Kabelbefestigung \(\mathrm{D}(50,50,250)\). Tischecken \(\mathrm{T}_1(0,0,70), \mathrm{T}_2(100,0,70)\).
+                        <ul>
+                            <li>a) Länge des Kabels (Abstand D zu L)?</li>
+                            <li>b) Geradengleichung Lichtstrahl von L nach T1.</li>
+                            <li>c) Liegt Mittelpunkt von \(\overline{LT_1}\) auf diesem Strahl?</li>
+                            <li>d) Winkel zwischen Strahl \(\vec{LT_1}\) und Tischkante \(\vec{T_1T_2}\) (<strong>[TR]</strong>).</li>
+                        </ul>
+                    </li>
+                     <li><strong>Fachwerk-Element:</strong><br>
+                        Streben von \(\mathrm{O}(0,0,0)\) zu \(\mathrm{P}_1(3,0,1), \mathrm{P}_2(0,4,1), \mathrm{P}_3(-2,-2,2)\).
+                        <ul>
+                            <li>a) Vektoren \(\vec{OP_1}, \vec{OP_2}, \vec{OP_3}\) und Längen bestimmen.</li>
+                            <li>b) \(\vec{OP_1} \perp \vec{OP_2}\)? Prüfe Skalarprodukt.</li>
+                            <li>c) Winkel zwischen \(\vec{OP_1}\) und \(\vec{OP_3}\) (<strong>[TR]</strong>).</li>
+                            <li>d) Weitere Strebe \(g: \vec{x} = \begin{pmatrix} 3\\0\\1 \end{pmatrix} + t \begin{pmatrix} -3\\4\\0 \end{pmatrix}\). Trifft sie die Strebe \(\vec{OP_2}\) (als Gerade \(h: \vec{x} = s \vec{OP_2}\))? Lagebeziehung? (<strong>[TR]</strong>).</li>
+                        </ul>
+                    </li>
                  </ol>
             </section>
         </article>
@@ -661,140 +854,284 @@
         <!-- ==================================================== -->
         <article id="teil3">
              <h1>Teil III: Ausgewählte Themen der Stochastik</h1>
-             <p>Dieser Teil führt in ausgewählte Themen der Stochastik ein...</p>
+             <p>Dieser Teil führt in ausgewählte Themen der Stochastik (Wahrscheinlichkeitsrechnung und Statistik) ein, mit einem besonderen Fokus auf Anwendungen im Bereich Gestaltung. Wahrscheinlichkeiten und statistische Methoden sind nützlich, um beispielsweise die Effektivität von Werbemaßnahmen zu bewerten, die Qualität von Druckerzeugnissen zu sichern oder Nutzerverhalten zu analysieren.</p>
+             <p>Wir behandeln die folgenden Themen:</p>
+            <ul>
+                <li><strong>Baumdiagramme</strong> zur Visualisierung mehrstufiger Prozesse.</li>
+                <li><strong>Vierfeldertafeln</strong> zur Analyse von Zusammenhängen zweier Merkmale.</li>
+                <li>Den <strong>Satz von Bayes</strong> zum Aktualisieren von Wahrscheinlichkeiten aufgrund neuer Informationen.</li>
+                <li>Den <strong>Binomialkoeffizienten</strong> für kombinatorische Abzählprobleme ("k aus n").</li>
+                <li>Die <strong>Binomialverteilung</strong> (Dichte und kumulierte Dichte) zur Analyse von Versuchsserien mit zwei Ausgängen.</li>
+            </ul>
+             <p>Für Berechnungen zum Binomialkoeffizienten sowie zur Binomialverteilung wird explizit die Nutzung des Taschenrechners <strong>[TR]</strong> beschrieben.</p>
 
               <section id="baumdiagramm">
                   <h2>Baumdiagramm</h2>
-                  <!-- Inhalt direkt hier -->
                   <h3>Erklärung</h3>
-                  <p>Ein <span class="tooltip" tabindex="0"><strong>Baumdiagramm</strong><span class="tooltiptext">Grafische Darstellung mehrstufiger Zufallsexperimente.</span></span>...</p>
-                  <p>Pfadregel: \(P(A \cap B) = P(A) \cdot P_A(B)\)</p>
-                  <p>Summenregel...</p>
-                  <div class="infobox">...</div>
-                  <h3>Beispiel: Nutzerfluss Website</h3>
-                  <p>P(Klick)=0.3, P(Kauf|Klick)=0.6...</p>
-                  <div class="baum-diagramm-beschreibung">
-                     <p><strong>Struktur (Text):</strong> Start -> [Klick (0.3) -> (Abschluss (0.6) -> P=0.18; Abbruch (0.4) -> P=0.12)], [Kein Klick (0.7) -> P=0.7]</p>
+                  <p>Ein <span class="tooltip" tabindex="0"><strong>Baumdiagramm</strong><span class="tooltiptext">Grafische Darstellung mehrstufiger Zufallsexperimente mit Knoten (Ereignissen) und Ästen (Wahrscheinlichkeiten).</span></span> ist eine grafische Methode, um mehrstufige Zufallsexperimente darzustellen. Jede Stufe entspricht einer Ebene von Verzweigungen.</p>
+                  <ul>
+                    <li><strong>Knoten:</strong> Stellen Ereignisse/Zustände dar.</li>
+                    <li><strong>Äste (Pfade):</strong> Stellen mögliche Übergänge dar.</li>
+                    <li><strong>Wahrscheinlichkeit am Ast:</strong> Oft <span class="tooltip" tabindex="0"><strong>bedingte Wahrscheinlichkeit</strong><span class="tooltiptext">Wahrscheinlichkeit für ein Ereignis B, unter der Bedingung, dass Ereignis A bereits eingetreten ist. Notation: P(B|A) oder P_A(B).</span></span> ab Stufe 2.</li>
+                    <li>Summe der Wahrscheinlichkeiten ausgehend von einem Knoten ist 1.</li>
+                  </ul>
+                  <p>Zwei wichtige Regeln:</p>
+                  <ol>
+                    <li><span class="tooltip" tabindex="0"><strong>Pfadregel (Multiplikationsregel):</strong><span class="tooltiptext">Die Wahrscheinlichkeit eines Ergebnisses am Ende eines Pfades ist das Produkt der Wahrscheinlichkeiten entlang dieses Pfades.</span></span> Die Wahrscheinlichkeit für ein Ergebnis am Ende eines Pfades (spezifische Abfolge) ist das Produkt der Wahrscheinlichkeiten entlang des Pfades.<br> Beispiel: \(P(A \cap B) = P(A) \cdot P_A(B)\).</li>
+                    <li><span class="tooltip" tabindex="0"><strong>Summenregel:</strong><span class="tooltiptext">Die Wahrscheinlichkeit für ein Ereignis, das über mehrere Pfade erreicht werden kann, ist die Summe der Wahrscheinlichkeiten dieser einzelnen Pfade.</span></span> Die Wahrscheinlichkeit für ein Ereignis, das durch mehrere Pfade erreicht werden kann, ist die Summe der Pfadwahrscheinlichkeiten dieser Pfade.</li>
+                  </ol>
+
+                  <div class="infobox">
+                      <p><strong>💡 Baumdiagramm</strong></p>
+                      <p>Visualisiert Abläufe von Zufallsereignissen über mehrere Stufen. Hilft, komplexe Wahrscheinlichkeiten mittels Pfad- und Summenregel zu berechnen. Zeigt bedingte Wahrscheinlichkeiten und resultierende Pfadwahrscheinlichkeiten.</p>
                   </div>
+
+                  <h3>Beispiel: Nutzerfluss Website</h3>
+                  <p>Nutzer besucht Landingpage. Klick (K) mit P(K)=0.3, kein Klick (\(\overline{K}\)) mit P(\(\overline{K}\))=0.7.<br>
+                  Nach Klick: Abschluss (A) mit P(A|K)=0.6, Abbruch (\(\overline{A}\)) mit P(\(\overline{A}\)|K)=0.4.</p>
+                  <!-- Baumdiagramm Beschreibung -->
+                  <div class="baum-diagramm-beschreibung">
+                      <p><strong>Baumstruktur (Textform):</strong></p>
+                      <ul>
+                          <li><strong>Start</strong>
+                              <ul>
+                                  <li>Ast: Klick (K), W'keit = 0.3
+                                      <ul>
+                                          <li>Ast: Abschluss (A), W'keit = 0.6 → Pfad K ∩ A, W'keit = 0.3 × 0.6 = <strong>0.18</strong></li>
+                                          <li>Ast: Abbruch (<span style="text-decoration: overline">A</span>), W'keit = 0.4 → Pfad K ∩ <span style="text-decoration: overline">A</span>, W'keit = 0.3 × 0.4 = <strong>0.12</strong></li>
+                                      </ul>
+                                  </li>
+                                  <li>Ast: Kein Klick (<span style="text-decoration: overline">K</span>), W'keit = 0.7 → Pfad <span style="text-decoration: overline">K</span>, W'keit = <strong>0.70</strong></li>
+                              </ul>
+                          </li>
+                      </ul>
+                      <p><em>(Summe der Pfadwahrscheinlichkeiten: 0.18 + 0.12 + 0.70 = 1.00)</em></p>
+                  </div>
+                  <p><strong>Interpretation:</strong> Die Wahrscheinlichkeit, dass ein Nutzer den Kauf abschließt, ist P(K ∩ A) = 0.18 (18%).</p>
+
                   <h3>Aufgaben</h3>
-                  <ol>...</ol>
+                  <ol>
+                      <li>Druckerei: Druckqualität (D), Schnitt (S). P(D<sub>G</sub>)=0.95. P(S<sub>K</sub>|D<sub>G</sub>)=0.98. P(D<sub>S</sub>)=0.05. P(S<sub>K</sub>|D<sub>S</sub>)=0.80.
+                          <ol type="a">
+                              <li>Zeichne das Baumdiagramm (oder beschreibe die Struktur). Berechne fehlende bedingte Wahrscheinlichkeiten (z.B. P(S<sub>F</sub>|D<sub>G</sub>)).</li>
+                              <li>Berechne alle 4 Pfadwahrscheinlichkeiten.</li>
+                              <li>Wahrscheinlichkeit für fehlerfreies Plakat (D<sub>G</sub> ∩ S<sub>K</sub>)?</li>
+                              <li>Wahrscheinlichkeit für mindestens einen Fehler? (Summenregel oder 1 - P(fehlerfrei)).</li>
+                          </ol>
+                      </li>
+                  </ol>
               </section>
 
              <section id="vierfeldertafel">
                 <h2>Vierfeldertafel</h2>
-                <!-- Inhalt direkt hier -->
-                <h3>Erklärung</h3>
-                <p>Eine <span class="tooltip" tabindex="0"><strong>Vierfeldertafel</strong><span class="tooltiptext">Tabelle zur Darstellung gemeinsamer Häufigkeiten/Wahrscheinlichkeiten von zwei Merkmalen.</span></span>...</p>
-                <!-- Tabelle als HTML -->
+                 <h3>Erklärung</h3>
+                 <p>Eine <span class="tooltip" tabindex="0"><strong>Vierfeldertafel</strong><span class="tooltiptext">Tabelle zur Darstellung gemeinsamer Häufigkeiten/Wahrscheinlichkeiten von zwei Merkmalen mit jeweils zwei Ausprägungen.</span></span> (oder Kontingenztafel) stellt die gemeinsamen Häufigkeiten oder Wahrscheinlichkeiten von zwei Merkmalen A und B (mit Ausprägungen A, \(\overline{A}\) und B, \(\overline{B}\)) dar.</p>
+                 <!-- Tabelle als HTML -->
                  <div class="table-container">
                     <table>
-                        <caption>Struktur Vierfeldertafel (Wahrsch.)</caption>
+                        <caption>Struktur Vierfeldertafel (Wahrscheinlichkeiten)</caption>
                         <thead>
                             <tr><th></th><th>Merkmal B</th><th>Merkmal <span style="text-decoration: overline">B</span></th><th>Gesamt</th></tr>
                         </thead>
                          <tbody>
-                            <tr><th>Merkmal A</th><td>\(P(A \cap B)\)</td><td>\(P(A \cap \overline{B})\)</td><td>\(P(A)\)</td></tr>
-                             <tr><th>Merkmal <span style="text-decoration: overline">A</span></th><td>\(P(\overline{A} \cap B)\)</td><td>\(P(\overline{A} \cap \overline{B})\)</td><td>\(P(\overline{A})\)</td></tr>
-                             <tr><th>Gesamt</th><td>\(P(B)\)</td><td>\(P(\overline{B})\)</td><td>1</td></tr>
+                            <tr><th>Merkmal A</th><td>\(P(A \cap B)\)</td><td>\(P(A \cap \overline{B})\)</td><td><strong>\(P(A)\)</strong></td></tr>
+                             <tr><th>Merkmal <span style="text-decoration: overline">A</span></th><td>\(P(\overline{A} \cap B)\)</td><td>\(P(\overline{A} \cap \overline{B})\)</td><td><strong>\(P(\overline{A})\)</strong></td></tr>
+                             <tr><th>Gesamt</th><td><strong>\(P(B)\)</strong></td><td><strong>\(P(\overline{B})\)</strong></td><td><strong>1</strong></td></tr>
                          </tbody>
                      </table>
                  </div>
-                 <p>Bedingte Wahrsch.: \(P_B(A) = \frac{P(A \cap B)}{P(B)}\)</p>
-                 <p>Unabhängigkeit: \(P(A \cap B) = P(A) \cdot P(B)\)</p>
-                <div class="infobox">...</div>
-                <h3>Beispiel: Nutzeranalyse</h3>
-                <p>500 Nutzer, A: Werbung gesehen, B: Gekauft...</p>
+                 <ul>
+                    <li>Inneren Felder: <span class="tooltip" tabindex="0"><strong>Schnittwahrscheinlichkeiten</strong><span class="tooltiptext">Wahrscheinlichkeit, dass beide Merkmale gleichzeitig auftreten, z.B. P(A und B).</span></span> \(P(A \cap B)\) etc.</li>
+                    <li>Randfelder (fett): <span class="tooltip" tabindex="0"><strong>Randwahrscheinlichkeiten</strong><span class="tooltiptext">Gesamtwahrscheinlichkeit für eine einzelne Merkmalsausprägung, z.B. P(A).</span></span> \(P(A), P(\overline{A}), P(B), P(\overline{B})\).</li>
+                    <li>Summe der inneren Felder = 1. Zeilen/Spalten addieren sich zu den Randsummen.</li>
+                 </ul>
+                 <p>Berechnung bedingter Wahrscheinlichkeiten:</p>
+                 <p>\[ P_B(A) = \frac{P(A \cap B)}{P(B)} \] </p>
+                 <p>Stochastische Unabhängigkeit: A und B sind unabhängig, wenn \(P(A \cap B) = P(A) \cdot P(B)\) gilt.</p>
+
+                <div class="infobox">
+                    <p><strong>💡 Vierfeldertafel</strong></p>
+                    <p>Organisiert übersichtlich gemeinsame und einzelne Wahrscheinlichkeiten/Häufigkeiten von zwei Merkmalen. Ideal zur Berechnung bedingter Wahrscheinlichkeiten und zur Prüfung auf stochastische Unabhängigkeit.</p>
+                </div>
+
+                <h3>Beispiel: Nutzeranalyse für Werbung</h3>
+                <p>500 Nutzer. A: Werbung gesehen, B: Produkt gekauft.<br>
+                Bekannt: P(A)=0.40, P(B)=0.16, P(A ∩ B)=0.10.</p>
                  <div class="table-container">
                     <table>
-                        <caption>Nutzeranalyse (Wahrsch.)</caption>
+                        <caption>Nutzeranalyse (Wahrscheinlichkeiten)</caption>
                         <thead>
                             <tr><th></th><th>Gekauft (B)</th><th>Nicht gekauft (<span style="text-decoration: overline">B</span>)</th><th>Gesamt</th></tr>
                         </thead>
                          <tbody>
-                            <tr><th>Gesehen (A)</th><td>0.10</td><td>0.30</td><td>0.40</td></tr>
-                             <tr><th>Nicht Gesehen (<span style="text-decoration: overline">A</span>)</th><td>0.06</td><td>0.54</td><td>0.60</td></tr>
-                             <tr><th>Gesamt</th><td>0.16</td><td>0.84</td><td>1.00</td></tr>
+                            <tr><th>Gesehen (A)</th><td>0.10</td><td>0.30</td><td><strong>0.40</strong></td></tr>
+                             <tr><th>Nicht Gesehen (<span style="text-decoration: overline">A</span>)</th><td>0.06</td><td>0.54</td><td><strong>0.60</strong></td></tr>
+                             <tr><th>Gesamt</th><td><strong>0.16</strong></td><td><strong>0.84</strong></td><td><strong>1.00</strong></td></tr>
                          </tbody>
                      </table>
                  </div>
-                <p>\(P_A(B) = 0.10 / 0.40 = 0.25\). Nicht unabhängig, da \(0.10 \neq 0.40 \cdot 0.16\).</p>
+                 <p>Bedingte Wahrscheinlichkeit: \(P_A(B) = \frac{P(A \cap B)}{P(A)} = \frac{0.10}{0.40} = 0.25\) (Kaufwahrscheinlichkeit steigt auf 25%, wenn Werbung gesehen wurde).</p>
+                 <p>Unabhängigkeit? \(P(A \cap B) = 0.10\). \(P(A) \cdot P(B) = 0.40 \cdot 0.16 = 0.064\). Da \(0.10 \neq 0.064\), sind die Ereignisse abhängig.</p>
+
                  <h3>Aufgaben</h3>
-                 <ol>...</ol>
+                 <ol>
+                    <li>Plotter-Beispiel: P(P1)=0.6, P(P2)=0.4, P(F|P1)=0.05, P(F|P2)=0.10.
+                        <ol type="a">
+                            <li>Berechne die vier Schnittwahrscheinlichkeiten (z.B. P(P1 ∩ F) = P(P1) * P(F|P1)).</li>
+                            <li>Erstelle die vollständige Vierfeldertafel.</li>
+                            <li>Gesamte Fehlerrate P(F)? (Randwahrscheinlichkeit).</li>
+                            <li>Wahrscheinlichkeit P(P1|F)? (Nutze Tafel: P(P1 ∩ F) / P(F)).</li>
+                            <li>Sind "von Plotter 1" und "fehlerhaft" unabhängig? Begründe.</li>
+                        </ol>
+                    </li>
+                 </ol>
              </section>
 
               <section id="bayes">
                  <h2>Satz von Bayes</h2>
-                 <!-- Inhalt direkt hier -->
                   <h3>Erklärung</h3>
-                  <p>Der <strong>Satz von Bayes</strong> erlaubt das Umkehren bedingter Wahrscheinlichkeiten...</p>
+                  <p>Der <span class="tooltip" tabindex="0"><strong>Satz von Bayes</strong><span class="tooltiptext">Formel zur Berechnung einer bedingten Wahrscheinlichkeit P(A|B) aus P(B|A), P(A) und P(B).</span></span> erlaubt das "Umdrehen" bedingter Wahrscheinlichkeiten. Wenn P(B|A) bekannt ist, können wir P(A|B) berechnen:</p>
                   <p>\[ P_B(A) = \frac{P_A(B) \cdot P(A)}{P(B)} \]</p>
-                  <p>Mit \(P(B) = P_A(B) P(A) + P_{\overline{A}}(B) P(\overline{A})\) (Satz d. totalen Wahrsch.)</p>
-                  <div class="infobox">...</div>
-                  <h3>Beispiel: A/B-Testing</h3>
-                  <p>Layout A/B, P(A)=P(B)=0.5. Konversion K: P(K|A)=0.1, P(K|B)=0.15.</p>
-                  <p>Gesucht P(A|K)?</p>
-                  <p>1. Totale Wahrsch. P(K) = (0.1*0.5) + (0.15*0.5) = 0.125.</p>
-                  <p>2. Bayes: \(P_K(A) = \frac{P_A(K) P(A)}{P(K)} = \frac{0.1 \cdot 0.5}{0.125} = 0.4\)</p>
+                  <p>Terme:</p>
+                  <ul>
+                    <li>\(P(A)\): <span class="tooltip" tabindex="0"><strong>A-priori-Wahrscheinlichkeit</strong><span class="tooltiptext">Die Wahrscheinlichkeit einer Hypothese A, bevor neue Evidenz B berücksichtigt wird.</span></span> (Basisrate von A).</li>
+                    <li>\(P_A(B)\): <span class="tooltip" tabindex="0"><strong>Likelihood</strong><span class="tooltiptext">Die Wahrscheinlichkeit, die Evidenz B zu beobachten, wenn Hypothese A wahr ist.</span></span> (Wahrscheinlichkeit der Beobachtung B, gegeben A).</li>
+                    <li>\(P(B)\): <span class="tooltip" tabindex="0"><strong>Totale Wahrscheinlichkeit / Evidenz</strong><span class="tooltiptext">Die Gesamtwahrscheinlichkeit, die Evidenz B zu beobachten, über alle möglichen Hypothesen hinweg.</span></span> von B (Normierungsfaktor). Berechnung oft mit Satz der totalen Wahrscheinlichkeit:<br>
+                    \(P(B) = P_A(B) P(A) + P_{\overline{A}}(B) P(\overline{A})\).</li>
+                    <li>\(P_B(A)\): <span class="tooltip" tabindex="0"><strong>A-posteriori-Wahrscheinlichkeit</strong><span class="tooltiptext">Die aktualisierte Wahrscheinlichkeit der Hypothese A, nachdem die Evidenz B beobachtet wurde.</span></span> (Aktualisierte Wahrscheinlichkeit von A, gegeben B).</li>
+                  </ul>
+
+                  <div class="infobox">
+                      <p><strong>💡 Satz von Bayes</strong></p>
+                      <p>Formel: \(P_B(A) = \frac{P_A(B) \cdot P(A)}{P(B)}\)<br>
+                      Ermöglicht Schluss von Wirkung (B) auf Ursache (A). Aktualisiert A-priori-Wahrsch. P(A) zur A-posteriori-Wahrsch. P(B|A) mittels Evidenz P(B).</p>
+                  </div>
+
+                  <h3>Beispiel: A/B-Testing Interpretation</h3>
+                  <p>Layout A/B, P(A)=P(B<sub>Layout</sub>)=0.5. Konversion K: P(K|A)=0.1, P(K|B<sub>Layout</sub>)=0.15.<br>
+                  Frage: Gegeben Konversion K, was ist P(A|K)?</p>
+                  <ol>
+                      <li><strong>Totale Wahrscheinlichkeit P(K):</strong><br>
+                       \(P(K) = P_A(K) P(A) + P_{B_{Layout}}(K) P(B_{Layout})\)<br>
+                       \(P(K) = (0.10 \cdot 0.50) + (0.15 \cdot 0.50) = 0.05 + 0.075 = 0.125\).</li>
+                      <li><strong>Satz von Bayes anwenden:</strong><br>
+                       \(P_K(A) = \frac{P_A(K) \cdot P(A)}{P(K)} = \frac{0.10 \cdot 0.50}{0.125} = \frac{0.05}{0.125} = 0.4\).</li>
+                  </ol>
+                  <p><strong>Ergebnis:</strong> Obwohl P(A)=0.5, ist P(A|K)=0.4. Wenn eine Konversion stattfand, ist es wahrscheinlicher, dass sie vom effektiveren Layout B kam.</p>
+
                   <h3>Aufgaben</h3>
-                  <ol>...</ol>
+                  <ol>
+                      <li>Plotter-Beispiel (Daten aus Vierfeldertafel-Aufgabe): P(P1)=0.6, P(P2)=0.4, P(F|P1)=0.05, P(F|P2)=0.10. Ein Druck ist fehlerhaft (F).
+                          <ol type="a">
+                              <li>Berechne die totale Fehlerrate P(F) mit dem Satz der totalen Wahrscheinlichkeit.</li>
+                              <li>Berechne mit Bayes P(P1|F) (Wahrsch., dass Fehler von Plotter 1 stammt).</li>
+                              <li>Berechne P(P2|F). Gilt P(P1|F) + P(P2|F) = 1?</li>
+                          </ol>
+                      </li>
+                  </ol>
               </section>
 
               <section id="binomialkoeffizient">
-                 <h2>Binomialkoeffizient ([TR])</h2>
-                 <!-- Inhalt direkt hier -->
+                 <h2>Binomialkoeffizient (<strong>[TR]</strong>)</h2>
                   <h3>Erklärung</h3>
-                  <p>Der <strong>Binomialkoeffizient</strong> \(\binom{n}{k}\) ("n über k")...</p>
-                  <p>Anzahl Möglichkeiten, k aus n Objekten zu wählen (ohne Reihenfolge/Zurücklegen).</p>
-                  <p>\[ \binom{n}{k} = \frac{n!}{k! (n-k)!} \]</p>
-                  <p>Taschenrechner: <strong>[TR]</strong> nCr-Funktion.</p>
-                  <div class="infobox">...</div>
+                  <p>Der <span class="tooltip" tabindex="0"><strong>Binomialkoeffizient</strong><span class="tooltiptext">Gibt die Anzahl der Möglichkeiten an, k Objekte aus n verschiedenen Objekten ohne Zurücklegen und ohne Beachtung der Reihenfolge auszuwählen.</span></span> \(\binom{n}{k}\) ("n über k") gibt die Anzahl der Möglichkeiten an, \(k\) Objekte aus einer Menge von \(n\) verschiedenen Objekten auszuwählen (Reihenfolge egal, ohne Zurücklegen). Anzahl der \(k\)-elementigen Teilmengen einer \(n\)-elementigen Menge.</p>
+                  <p>\[ \binom{n}{k} = \frac{n!}{k! (n-k)!} \quad \text{für } 0 \le k \le n \] </p>
+                  <p>Dabei ist \(n!\) ("n-Fakultät") = \(n \cdot (n-1) \cdot \dots \cdot 1\), mit \(0! = 1\).</p>
+                  <p>Berechnung mit <strong>Taschenrechner [TR]</strong>: Funktion <code>nCr</code>.</p>
+
+                  <div class="infobox">
+                      <p><strong>💡 Binomialkoeffizient \(\binom{n}{k}\)</strong></p>
+                      <p>Zählt Möglichkeiten für "k aus n auswählen" (ohne Reihenfolge/Zurücklegen).<br>
+                      Berechnung: \(\frac{n!}{k!(n-k)!}\) oder <strong>[TR]</strong> (<code>nCr</code>-Taste).<br>
+                      Symmetrie: \(\binom{n}{k} = \binom{n}{n-k}\).<br>
+                      Spezialfälle: \(\binom{n}{0}=1\), \(\binom{n}{1}=n\), \(\binom{n}{n}=1\).</p>
+                  </div>
+
                   <h3>Beispiel: Farbauswahl</h3>
-                  <p>3 Farben aus 8 wählen? \(\binom{8}{3} = \frac{8!}{3!5!} = 56\). (TR: 8 nCr 3).</p>
+                  <p>Genau 3 Farben aus 8 verschiedenen auswählen. Reihenfolge egal.</p>
+                  <p>Gesucht: \(\binom{8}{3}\).<br>
+                  Berechnung: \(\binom{8}{3} = \frac{8!}{3!5!} = \frac{8 \cdot 7 \cdot 6}{3 \cdot 2 \cdot 1} = 56\).<br>
+                  Mit <strong>[TR]</strong>: <code>8 nCr 3</code> = 56.</p>
+                  <p>Es gibt 56 mögliche Farbkombinationen.</p>
+
                   <h3>Aufgaben</h3>
-                  <ol>...</ol>
+                  <ol>
+                      <li>Aus 12 Models sollen genau 5 ausgewählt werden. Reihenfolge egal. Wie viele Gruppen? Berechne mit <strong>[TR]</strong>.</li>
+                  </ol>
               </section>
 
               <section id="binomialdichte">
-                 <h2>Binomialdichte ([TR])</h2>
-                 <!-- Inhalt direkt hier -->
-                 <h3>Erklärung</h3>
-                 <p>Die <strong>Binomialverteilung</strong> \(X \sim B(n, p)\) modelliert die Anzahl \(k\) der Erfolge in \(n\) unabhängigen Versuchen mit Erfolgswahrsch. \(p\).</p>
-                 <p><strong>Binomialdichte</strong> \(P(X=k)\) gibt die Wahrscheinlichkeit für <em>genau</em> k Erfolge:</p>
-                 <p>\[ P(X=k) = \binom{n}{k} p^k (1-p)^{n-k} \]</p>
-                 <p>Taschenrechner: <strong>[TR]</strong> binompdf(n, p, k).</p>
-                  <div class="infobox">...</div>
+                 <h2>Binomialdichte (<strong>[TR]</strong>)</h2>
+                  <h3>Erklärung</h3>
+                  <p>Die <span class="tooltip" tabindex="0"><strong>Binomialverteilung</strong> \(B(n, p)\)<span class="tooltiptext">Wahrscheinlichkeitsverteilung für die Anzahl der Erfolge in einer festen Serie von n unabhängigen Ja/Nein-Versuchen mit konstanter Erfolgswahrscheinlichkeit p.</span></span> modelliert die Anzahl \(k\) der "Erfolge" in \(n\) unabhängigen Wiederholungen eines Experiments mit zwei Ausgängen (Erfolg/Misserfolg). Die Erfolgswahrscheinlichkeit \(p\) ist konstant.</p>
+                  <p>Die <span class="tooltip" tabindex="0"><strong>Binomialdichte</strong> \(P(X=k)\)<span class="tooltiptext">Die Wahrscheinlichkeit, bei n Versuchen mit Erfolgswahrscheinlichkeit p genau k Erfolge zu erzielen.</span></span> gibt die Wahrscheinlichkeit für <em>genau</em> \(k\) Erfolge an:</p>
+                  <p>\[ P(X=k) = \binom{n}{k} p^k (1-p)^{n-k} \] </p>
+                  <p>Sie kombiniert die Anzahl der Anordnungen \(\binom{n}{k}\) mit der Wahrscheinlichkeit eines spezifischen Pfades \(p^k (1-p)^{n-k}\).</p>
+                  <p>Berechnung mit <strong>Taschenrechner [TR]</strong>: Funktion <code>binompdf(n, p, k)</code> (oder ähnlich).</p>
+
+                  <div class="infobox">
+                      <p><strong>💡 Binomialdichte \(P(X=k)\)</strong></p>
+                      <p>Wahrscheinlichkeit für <strong>exakt</strong> \(k\) Erfolge in \(n\) unabhängigen Bernoulli-Versuchen (Erfolgswahrsch. \(p\)).<br>
+                      Formel: \(P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}\).<br>
+                      Berechnung mit <strong>[TR]</strong>: <code>binompdf(n, p, k)</code>.</p>
+                  </div>
+
                   <h3>Beispiel: Fehlerhafte Drucke</h3>
-                  <p>n=20, p=0.05 (Fehler). Wahrscheinlichkeit für genau k=2 Fehler?</p>
-                  <p>\(P(X=2) = \binom{20}{2} (0.05)^2 (0.95)^{18} \approx 0.1887\).</p>
-                  <p>(TR: binompdf(20, 0.05, 2)).</p>
+                  <p>\(n=20\) Drucke, Wahrscheinlichkeit für Fehler ("Erfolg") \(p=0.05\). \(X \sim B(20, 0.05)\).<br>
+                  Wahrscheinlichkeit für genau \(k=2\) Fehler?</p>
+                  <p>Gesucht: \(P(X=2)\).<br>
+                  Berechnung: \(P(X=2) = \binom{20}{2} (0.05)^2 (0.95)^{18} \approx 0.1887\).<br>
+                  Mit <strong>[TR]</strong>: <code>binompdf(20, 0.05, 2)</code> \(\approx 0.1887\).</p>
                   <div id="plotBinomialPDF" class="plotly-chart"></div>
+
                   <h3>Aufgaben</h3>
-                  <ol>...</ol>
+                  <ol>
+                      <li>Umfrage unter \(n=50\) Kunden. Design gefällt ("Erfolg") mit \(p=0.7\). Berechne mit <strong>[TR]</strong> die Wahrscheinlichkeit, dass <strong>genau 30</strong> Kunden das Design mögen (\(P(X=30)\) für \(X \sim B(50, 0.7)\)).</li>
+                  </ol>
               </section>
 
               <section id="kumulierte_binomial">
-                 <h2>Kumulierte Binomialdichte ([TR])</h2>
-                 <!-- Inhalt direkt hier -->
+                 <h2>Kumulierte Binomialdichte (<strong>[TR]</strong>)</h2>
                   <h3>Erklärung</h3>
-                  <p>Die <strong>kumulierte Binomialverteilungsfunktion</strong> \(P(X \le k)\) gibt die Wahrscheinlichkeit für <em>höchstens</em> k Erfolge an.</p>
-                  <p>\[ P(X \le k) = \sum_{i=0}^{k} P(X=i) = \sum_{i=0}^{k} \binom{n}{i} p^i (1-p)^{n-i} \]</p>
-                  <p>Taschenrechner: <strong>[TR]</strong> binomcdf(n, p, k).</p>
-                  <p>Umrechnungen:</p>
+                  <p>Die <span class="tooltip" tabindex="0"><strong>kumulierte Binomialverteilungsfunktion</strong> \(P(X \le k)\)<span class="tooltiptext">Die Wahrscheinlichkeit, bei n Versuchen mit Erfolgswahrscheinlichkeit p höchstens k Erfolge zu erzielen. Summe der Einzelwahrscheinlichkeiten P(X=0) + ... + P(X=k).</span></span> gibt die Wahrscheinlichkeit für <em>höchstens</em> \(k\) Erfolge an (\(X \sim B(n, p)\)).</p>
+                  <p>\[ P(X \le k) = \sum_{i=0}^{k} P(X=i) = \sum_{i=0}^{k} \binom{n}{i} p^i (1-p)^{n-i} \] </p>
+                  <p>Berechnung mit <strong>Taschenrechner [TR]</strong>: Funktion <code>binomcdf(n, p, k)</code> (oder ähnlich).</p>
+                  <p>Umrechnungen für andere Intervalle:</p>
                   <ul>
                       <li>\(P(X < k) = P(X \le k-1)\)</li>
                       <li>\(P(X \ge k) = 1 - P(X \le k-1)\)</li>
                       <li>\(P(X > k) = 1 - P(X \le k)\)</li>
                       <li>\(P(k_1 \le X \le k_2) = P(X \le k_2) - P(X \le k_1-1)\)</li>
                   </ul>
-                  <div class="infobox">...</div>
+
+                  <div class="infobox">
+                      <p><strong>💡 Kumulierte Binomialdichte \(P(X \le k)\)</strong></p>
+                      <p>Summiert Wahrscheinlichkeiten für 0 bis k Erfolge (\(X \sim B(n, p)\)).<br>
+                      Berechnung mit <strong>[TR]</strong>: <code>binomcdf(n, p, k)</code>.<br>
+                      Nützlich für "höchstens", "mindestens", "zwischen".</p>
+                  </div>
+
                   <h3>Beispiel: Nutzerzufriedenheit</h3>
-                  <p>n=100, p=0.8 (intuitiv). \(X \sim B(100, 0.8)\).</p>
-                  <p>Höchstens 85? \(P(X \le 85)\) (TR: binomcdf(100, 0.8, 85)) \(\approx 0.9102\).</p>
-                  <p>Mindestens 75? \(P(X \ge 75) = 1 - P(X \le 74)\) (TR: 1 - binomcdf(100, 0.8, 74)) \(\approx 0.9124\).</p>
-                  <p>Zwischen 78 und 82? \(P(78 \le X \le 82) = P(X \le 82) - P(X \le 77)\) (TR: ...) \(\approx 0.5009\).</p>
-                  <div id="plotBinomialCDF" class="plotly-chart"></div>
+                  <p>\(n=100\) Tester, \(p=0.8\) (intuitiv). \(X \sim B(100, 0.8)\).</p>
+                  <p><strong>Höchstens 85?</strong><br>
+                   \(P(X \le 85)\). Mit <strong>[TR]</strong>: <code>binomcdf(100, 0.8, 85)</code> \(\approx 0.9102\).</p>
+                  <p><strong>Mindestens 75?</strong><br>
+                   \(P(X \ge 75) = 1 - P(X \le 74)\). Mit <strong>[TR]</strong>: \(1 - \text{binomcdf}(100, 0.8, 74) \approx 1 - 0.0876 = 0.9124\).</p>
+                   <p><strong>Zwischen 78 und 82 (inkl.)?</strong><br>
+                   \(P(78 \le X \le 82) = P(X \le 82) - P(X \le 77)\). Mit <strong>[TR]</strong>: \(\text{binomcdf}(100, 0.8, 82) - \text{binomcdf}(100, 0.8, 77) \approx 0.7388 - 0.2379 = 0.5009\).</p>
+                   <div id="plotBinomialCDF" class="plotly-chart"></div>
+
                   <h3>Aufgaben</h3>
-                  <ol>...</ol>
+                  <ol>
+                      <li>Webshop: \(n=80\) Besucher legen Produkt in Warenkorb. \(p=0.15\) brechen Kauf ab ("Erfolg"). \(X \sim B(80, 0.15)\). Berechne mit <strong>[TR]</strong>:
+                          <ol type="a">
+                              <li>\(P(X \le 10)\) (höchstens 10 Abbrüche). (<code>binomcdf</code>)</li>
+                              <li>\(P(X \ge 15)\) (mindestens 15 Abbrüche). (\(1 - P(X \le ...)\))</li>
+                              <li>\(P(X = 12)\) (genau 12 Abbrüche). (<code>binompdf</code>)</li>
+                              <li>\(P(8 \le X \le 16)\) (zwischen 8 und 16 Abbrüche, inkl.). (\(P(X \le ...) - P(X \le ...)\))</li>
+                          </ol>
+                      </li>
+                  </ol>
               </section>
 
         </article>

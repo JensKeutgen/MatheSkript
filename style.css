@@ -3,22 +3,28 @@
     /* Logo-basierte Primärfarben für Teile */
     --part1-primary: #003d7a; /* Dunkelblau */
     --part1-secondary: #007bff; /* Helleres Blau als Akzent */
+    --part1-infobg: #e7f5ff;   /* Helles Blau für Info Teil 1 */
+    --part1-infoborder: var(--part1-secondary);
+
     --part2-primary: #00802b; /* Sattes Grün */
     --part2-secondary: #28a745; /* Helleres Grün als Akzent */
+    --part2-infobg: #eafaf1;   /* Helles Grün für Info Teil 2 */
+    --part2-infoborder: var(--part2-secondary);
+
     --part3-primary: #8A008A; /* Lila/Magenta */
     --part3-secondary: #d900d9; /* Helleres Lila als Akzent */
+    --part3-infobg: #fce7fc;   /* Helles Lila für Info Teil 3 */
+    --part3-infoborder: var(--part3-secondary);
 
     /* Allgemeine Farben */
     --light-bg: #ffffff;
     --medium-bg: #f8f9fa;
     --dark-bg: #e9ecef;
-    --text-color: #212529; /* Etwas dunkleres Grau */
+    --text-color: #212529;
     --text-light: #6c757d;
     --border-color: #dee2e6;
-    --link-color: var(--part1-secondary); /* Standard Link-Farbe (passend zu Teil 1) */
-    --info-bg: #e7f5ff; /* Hellblau für Info (konsistent) */
-    --info-border: var(--part1-secondary);
-    --tooltip-bg: #343a40; /* Dunkler Hintergrund für Tooltips */
+    --link-color: var(--part1-secondary); /* Standard Link-Farbe */
+    --tooltip-bg: #343a40;
     --tooltip-text: #ffffff;
 }
 
@@ -44,7 +50,7 @@ header, footer {
     border-bottom: 1px solid var(--border-color);
     color: var(--text-light);
 }
-header h1 { margin-bottom: 0.2em; color: var(--text-color); font-size: 1.8em; border: none;} /* Neutraler Header */
+header h1 { margin-bottom: 0.2em; color: var(--text-color); font-size: 1.8em; border: none;}
 header p { font-size: 1.1em; margin-top: 0.1em; }
 footer { border-top: 1px solid var(--border-color); border-bottom: none; margin-top: 3em; font-size: 0.9em; }
 
@@ -61,7 +67,7 @@ main {
 article h1 {
     font-size: 2em;
     padding-bottom: 0.3em;
-    margin-top: 2.5em; /* Mehr Abstand zwischen Teilen */
+    margin-top: 2.5em;
     margin-bottom: 1em;
     font-weight: 700;
 }
@@ -97,23 +103,42 @@ code { background-color: var(--dark-bg); padding: 0.2em 0.4em; border-radius: 3p
 a { color: var(--link-color); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* Infobox (konsistent hellblau) */
+/* Infobox (Allgemein und pro Teil) */
 .infobox {
-    background-color: var(--info-bg);
-    border-left: 5px solid var(--info-border);
     padding: 12px 18px;
     margin: 1.5em 0;
     border-radius: 4px;
+    border-left-width: 5px;
+    border-left-style: solid;
 }
-.infobox strong { color: var(--info-border); }
 .infobox p:first-of-type { margin-top: 0; }
 .infobox p:last-of-type { margin-bottom: 0; }
+
+/* Farben für Infoboxen je nach Teil */
+#teil1 .infobox {
+    background-color: var(--part1-infobg);
+    border-left-color: var(--part1-infoborder);
+}
+#teil1 .infobox strong { color: var(--part1-primary); } /* Text in Box hervorheben */
+
+#teil2 .infobox {
+    background-color: var(--part2-infobg);
+    border-left-color: var(--part2-infoborder);
+}
+#teil2 .infobox strong { color: var(--part2-primary); }
+
+#teil3 .infobox {
+    background-color: var(--part3-infobg);
+    border-left-color: var(--part3-infoborder);
+}
+#teil3 .infobox strong { color: var(--part3-primary); }
+
 
 /* Tooltip */
 .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted var(--link-color); /* Dezenter Hinweis */
+    border-bottom: 1px dotted var(--link-color); /* Standard-Linkfarbe */
     cursor: help;
 }
 /* Farbliche Anpassung der Unterstreichung je nach Teil */
@@ -124,16 +149,16 @@ a:hover { text-decoration: underline; }
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 180px;
-    background-color: var(--tooltip-bg);
+    background-color: var(--tooltip-bg); /* Neutral dunkel */
     color: var(--tooltip-text);
     text-align: center;
     border-radius: 6px;
     padding: 6px 10px;
     position: absolute;
-    z-index: 10; /* Wichtig für Sichtbarkeit */
+    z-index: 10;
     bottom: 130%;
     left: 50%;
-    margin-left: -90px; /* Zentrieren */
+    margin-left: -90px;
     opacity: 0;
     transition: opacity 0.3s;
     font-size: 0.9em;
@@ -151,78 +176,36 @@ a:hover { text-decoration: underline; }
 }
 .tooltip:hover .tooltiptext, .tooltip:focus .tooltiptext {
     visibility: visible;
-    opacity: 0.95; /* Leichte Transparenz optional */
+    opacity: 0.95;
 }
 
 /* Tabelle */
-.table-container {
-    overflow-x: auto; /* Tabelle auf Mobile scrollbar machen */
-    margin: 1em 0;
-}
-table {
-    border-collapse: collapse;
-    width: auto;
-    border: 1px solid var(--border-color);
-    min-width: 400px; /* Verhindert zu starkes Quetschen */
-}
-caption {
-    caption-side: bottom;
-    font-size: 0.9em;
-    color: var(--text-light);
-    padding: 0.5em;
-}
-th, td {
-    border: 1px solid var(--border-color);
-    padding: 8px 12px;
-    text-align: center;
-    vertical-align: middle;
-}
-th {
-    background-color: var(--medium-bg);
-    font-weight: bold;
-}
-tbody tr:nth-child(even) { background-color: var(--medium-bg); } /* Zebra-Streifen */
+.table-container { overflow-x: auto; margin: 1em 0; }
+table { border-collapse: collapse; width: auto; border: 1px solid var(--border-color); min-width: 400px; }
+caption { caption-side: bottom; font-size: 0.9em; color: var(--text-light); padding: 0.5em; }
+th, td { border: 1px solid var(--border-color); padding: 8px 12px; text-align: center; vertical-align: middle; }
+th { background-color: var(--medium-bg); font-weight: bold; }
+tbody tr:nth-child(even) { background-color: var(--medium-bg); }
 
 /* Baumdiagramm Beschreibung */
-.baum-diagramm-beschreibung {
-    border: 1px dashed #ccc;
-    padding: 1em;
-    background-color: #fafafa;
-    font-size: 0.95em;
-    margin: 1em 0;
-}
+.baum-diagramm-beschreibung { border: 1px dashed #ccc; padding: 1em; background-color: #fafafa; font-size: 0.95em; margin: 1em 0; }
 .baum-diagramm-beschreibung ul { padding-left: 20px; margin-top: 0.5em; margin-bottom: 0.5em;}
 .baum-diagramm-beschreibung li { margin-bottom: 0.3em; }
 
 
 /* Sidebar */
-#sidebar { height: 100%; width: 280px; position: fixed; z-index: 1000; top: 0; left: 0; background-color: var(--medium-bg); border-right: 1px solid var(--border-color); overflow-y: auto; padding-top: 0; /* Kein Padding oben mehr */ transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
+#sidebar { height: 100%; width: 280px; position: fixed; z-index: 1000; top: 0; left: 0; background-color: var(--medium-bg); border-right: 1px solid var(--border-color); overflow-y: auto; padding-top: 0; transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
 #sidebar.sidebar-open { transform: translateX(0); }
-#sidebar nav h3 { padding: 15px 20px; margin: 0; color: #333; border-bottom: 1px solid var(--border-color); font-size: 1.1em; background-color: var(--dark-bg); position: sticky; top: 0; z-index: 1; /* Bleibt beim Scrollen oben */}
+#sidebar nav h3 { padding: 15px 20px; margin: 0; color: #333; border-bottom: 1px solid var(--border-color); font-size: 1.1em; background-color: var(--dark-bg); position: sticky; top: 0; z-index: 1;}
 #sidebar nav ul { list-style: none; padding: 0; margin: 0; }
-#sidebar nav ul li a { display: block; padding: 10px 20px 10px 30px; /* Mehr Einzug für Unterpunkte */ text-decoration: none; color: var(--link-color); transition: background-color 0.2s ease; border-bottom: 1px solid #eee; font-size: 0.95em; }
+#sidebar nav ul li a { display: block; padding: 10px 20px 10px 30px; text-decoration: none; color: var(--link-color); transition: background-color 0.2s ease; border-bottom: 1px solid #eee; font-size: 0.95em; }
 #sidebar nav ul li a:hover { background-color: var(--dark-bg); }
-/* Hauptteil-Links in Sidebar hervorheben */
-#sidebar nav ul li strong a {
-    padding: 12px 20px;
-    font-weight: bold;
-    color: var(--text-color);
-    background-color: var(--dark-bg);
-    font-size: 1em;
-}
-/* Farbliche Akzente für Hauptteil-Links (optional) */
-#sidebar nav ul li strong a[href="#teil1"] { border-left: 5px solid var(--part1-primary); padding-left: 15px; }
-#sidebar nav ul li strong a[href="#teil2"] { border-left: 5px solid var(--part2-primary); padding-left: 15px; }
-#sidebar nav ul li strong a[href="#teil3"] { border-left: 5px solid var(--part3-primary); padding-left: 15px; }
-/* Unterpunkte etwas weniger prominent */
-#sidebar nav ul li a:not([href^="#teil"]) { /* Wählt Links, die NICHT mit #teil beginnen */
-     color: #444;
-     padding-left: 40px; /* Noch mehr Einzug */
-     font-size: 0.9em;
- }
- #sidebar nav ul li a:not([href^="#teil"]):hover {
-     background-color: #f0f0f0;
- }
+#sidebar nav ul li strong a { padding: 12px 20px; font-weight: bold; color: var(--text-color); background-color: var(--dark-bg); font-size: 1em; border-left-width: 5px; border-left-style: solid; padding-left: 15px;}
+#sidebar nav ul li strong a[href="#teil1"] { border-left-color: var(--part1-primary); }
+#sidebar nav ul li strong a[href="#teil2"] { border-left-color: var(--part2-primary); }
+#sidebar nav ul li strong a[href="#teil3"] { border-left-color: var(--part3-primary); }
+#sidebar nav ul li a:not([href^="#teil"]) { color: #444; padding-left: 40px; font-size: 0.9em; }
+#sidebar nav ul li a:not([href^="#teil"]):hover { background-color: #f0f0f0; }
 
 /* Menu Toggle Button */
 #menu-toggle { position: fixed; top: 10px; left: 10px; z-index: 1001; background-color: var(--light-bg); border: 1px solid #ccc; padding: 6px 10px; cursor: pointer; font-size: 1.4em; border-radius: 4px; transition: left 0.3s ease-in-out, background-color 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
@@ -232,21 +215,13 @@ tbody tr:nth-child(even) { background-color: var(--medium-bg); } /* Zebra-Streif
 #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 999; display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
 #overlay.active { display: block; opacity: 1; }
 
-/* Ausklappbare Abschnitte (Styles werden nicht mehr aktiv genutzt, aber hier belassen) */
-.collapsible-header { /* ... */ }
-.collapsible-header::after { /* ... */ }
-.collapsible-header.active::after { /* ... */ }
-.section-content { /* max-height etc. nicht mehr relevant */ padding: 10px 18px; /* Padding wird jetzt immer angewendet */}
-.nested-collapsible { /* ... */ }
-.nested-collapsible + .collapsible-content { /* ... */ }
-
 /* Plotly Chart Container */
 .plotly-chart { width: 100%; min-height: 400px; margin: 1.5em 0; border: 1px solid var(--border-color); border-radius: 4px; }
 
 /* Responsive Design */
 @media (min-width: 900px) {
     body.sidebar-active { margin-left: 280px; }
-    main { padding-left: 2em; } /* Reset padding for non-active state */
+    main { padding-left: 2em; }
     main.sidebar-active { margin-left: calc(50% - 425px + 140px); }
     #menu-toggle.sidebar-active { left: calc(10px + 280px); }
     #overlay { display: none !important; }

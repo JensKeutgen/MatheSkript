@@ -1,19 +1,29 @@
-/* Grundlegende Stile */
+/* Grundlegende Stile und Farbvariablen */
 :root {
-    --primary-color: #0056b3; /* Ein zugängliches Blau */
-    --secondary-color: #007bff;
+    /* Logo-basierte Primärfarben für Teile */
+    --part1-primary: #003d7a; /* Dunkelblau */
+    --part1-secondary: #007bff; /* Helleres Blau als Akzent */
+    --part2-primary: #00802b; /* Sattes Grün */
+    --part2-secondary: #28a745; /* Helleres Grün als Akzent */
+    --part3-primary: #8A008A; /* Lila/Magenta */
+    --part3-secondary: #d900d9; /* Helleres Lila als Akzent */
+
+    /* Allgemeine Farben */
     --light-bg: #ffffff;
     --medium-bg: #f8f9fa;
     --dark-bg: #e9ecef;
-    --text-color: #343a40;
+    --text-color: #212529; /* Etwas dunkleres Grau */
     --text-light: #6c757d;
     --border-color: #dee2e6;
-    --info-bg: #e7f5ff; /* Hellblau für Info */
-    --info-border: #007bff;
+    --link-color: var(--part1-secondary); /* Standard Link-Farbe (passend zu Teil 1) */
+    --info-bg: #e7f5ff; /* Hellblau für Info (konsistent) */
+    --info-border: var(--part1-secondary);
+    --tooltip-bg: #343a40; /* Dunkler Hintergrund für Tooltips */
+    --tooltip-text: #ffffff;
 }
 
 html {
-    scroll-behavior: smooth; /* Aktiviert sanftes Scrollen */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -26,6 +36,7 @@ body {
     transition: margin-left .3s;
 }
 
+/* Header & Footer (neutral) */
 header, footer {
     background-color: var(--medium-bg);
     padding: 1em 2em;
@@ -33,26 +44,60 @@ header, footer {
     border-bottom: 1px solid var(--border-color);
     color: var(--text-light);
 }
-header h1 { margin-bottom: 0.2em; color: var(--primary-color); }
+header h1 { margin-bottom: 0.2em; color: var(--text-color); font-size: 1.8em; border: none;} /* Neutraler Header */
+header p { font-size: 1.1em; margin-top: 0.1em; }
 footer { border-top: 1px solid var(--border-color); border-bottom: none; margin-top: 3em; font-size: 0.9em; }
 
+/* Hauptinhalt */
 main {
     max-width: 850px;
     margin: 2em auto;
     padding: 0 1em;
     transition: margin-left .3s;
-    padding-left: 2em; /* Platz für Button */
+    padding-left: 2em;
 }
 
-h1, h2, h3 { color: var(--primary-color); margin-top: 1.8em; margin-bottom: 0.6em; font-weight: 600; }
-h1 { font-size: 2em; border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.3em; }
-h2 { font-size: 1.6em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.2em; }
-h3 { font-size: 1.3em; color: #495057; }
+/* Teil-Überschriften (H1 in Artikeln) */
+article h1 {
+    font-size: 2em;
+    padding-bottom: 0.3em;
+    margin-top: 2.5em; /* Mehr Abstand zwischen Teilen */
+    margin-bottom: 1em;
+    font-weight: 700;
+}
+#teil1 h1 { color: var(--part1-primary); border-bottom: 3px solid var(--part1-secondary); }
+#teil2 h1 { color: var(--part2-primary); border-bottom: 3px solid var(--part2-secondary); }
+#teil3 h1 { color: var(--part3-primary); border-bottom: 3px solid var(--part3-secondary); }
 
-strong { font-weight: 600; } /* Etwas stärker */
-code { background-color: #e9ecef; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+/* Abschnitt-Überschriften (H2) */
+h2 {
+    font-size: 1.6em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.2em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-weight: 600;
+}
+#teil1 h2 { color: var(--part1-primary); }
+#teil2 h2 { color: var(--part2-primary); }
+#teil3 h2 { color: var(--part3-primary); }
 
-/* Infobox */
+/* Unter-Abschnitt-Überschriften (H3) */
+h3 {
+    font-size: 1.3em;
+    color: #495057;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    font-weight: 600;
+}
+
+/* Grundlegende Elemente */
+strong { font-weight: 600; }
+code { background-color: var(--dark-bg); padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; font-size: 0.95em; }
+a { color: var(--link-color); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Infobox (konsistent hellblau) */
 .infobox {
     background-color: var(--info-bg);
     border-left: 5px solid var(--info-border);
@@ -61,82 +106,157 @@ code { background-color: #e9ecef; padding: 0.2em 0.4em; border-radius: 3px; font
     border-radius: 4px;
 }
 .infobox strong { color: var(--info-border); }
+.infobox p:first-of-type { margin-top: 0; }
+.infobox p:last-of-type { margin-bottom: 0; }
 
 /* Tooltip */
-.tooltip { position: relative; display: inline-block; border-bottom: 1px dotted var(--secondary-color); cursor: help; }
-.tooltip .tooltiptext { visibility: hidden; width: 180px; background-color: #333; color: #fff; text-align: center; border-radius: 6px; padding: 6px 10px; position: absolute; z-index: 1; bottom: 130%; left: 50%; margin-left: -90px; opacity: 0; transition: opacity 0.3s; font-size: 0.9em; font-weight: normal; border-bottom: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-.tooltip .tooltiptext::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #333 transparent transparent transparent; }
-.tooltip:hover .tooltiptext, .tooltip:focus .tooltiptext { visibility: visible; opacity: 1; }
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted var(--link-color); /* Dezenter Hinweis */
+    cursor: help;
+}
+/* Farbliche Anpassung der Unterstreichung je nach Teil */
+#teil1 .tooltip { border-bottom-color: var(--part1-secondary); }
+#teil2 .tooltip { border-bottom-color: var(--part2-secondary); }
+#teil3 .tooltip { border-bottom-color: var(--part3-secondary); }
 
-/* Tabelle (z.B. Vierfeldertafel) */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 180px;
+    background-color: var(--tooltip-bg);
+    color: var(--tooltip-text);
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 10px;
+    position: absolute;
+    z-index: 10; /* Wichtig für Sichtbarkeit */
+    bottom: 130%;
+    left: 50%;
+    margin-left: -90px; /* Zentrieren */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.9em;
+    font-weight: normal;
+    border-bottom: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%; left: 50%;
+    margin-left: -5px;
+    border-width: 5px; border-style: solid;
+    border-color: var(--tooltip-bg) transparent transparent transparent;
+}
+.tooltip:hover .tooltiptext, .tooltip:focus .tooltiptext {
+    visibility: visible;
+    opacity: 0.95; /* Leichte Transparenz optional */
+}
+
+/* Tabelle */
+.table-container {
+    overflow-x: auto; /* Tabelle auf Mobile scrollbar machen */
+    margin: 1em 0;
+}
 table {
     border-collapse: collapse;
-    margin: 1em 0;
-    width: auto; /* Oder 100% */
+    width: auto;
     border: 1px solid var(--border-color);
+    min-width: 400px; /* Verhindert zu starkes Quetschen */
+}
+caption {
+    caption-side: bottom;
+    font-size: 0.9em;
+    color: var(--text-light);
+    padding: 0.5em;
 }
 th, td {
     border: 1px solid var(--border-color);
     padding: 8px 12px;
     text-align: center;
+    vertical-align: middle;
 }
 th {
     background-color: var(--medium-bg);
     font-weight: bold;
 }
-tbody tr:nth-child(odd) { background-color: var(--light-bg); }
-tbody tr:nth-child(even) { background-color: var(--medium-bg); }
+tbody tr:nth-child(even) { background-color: var(--medium-bg); } /* Zebra-Streifen */
 
-/* Baumdiagramm Beschreibung (einfach) */
+/* Baumdiagramm Beschreibung */
 .baum-diagramm-beschreibung {
     border: 1px dashed #ccc;
     padding: 1em;
     background-color: #fafafa;
     font-size: 0.95em;
+    margin: 1em 0;
 }
-.baum-diagramm-beschreibung ul { padding-left: 20px; }
+.baum-diagramm-beschreibung ul { padding-left: 20px; margin-top: 0.5em; margin-bottom: 0.5em;}
+.baum-diagramm-beschreibung li { margin-bottom: 0.3em; }
 
 
 /* Sidebar */
-#sidebar { height: 100%; width: 280px; /* Breiter */ position: fixed; z-index: 1000; top: 0; left: 0; background-color: var(--medium-bg); border-right: 1px solid var(--border-color); overflow-y: auto; /* Scrollbar wenn nötig */ padding-top: 60px; transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
+#sidebar { height: 100%; width: 280px; position: fixed; z-index: 1000; top: 0; left: 0; background-color: var(--medium-bg); border-right: 1px solid var(--border-color); overflow-y: auto; padding-top: 0; /* Kein Padding oben mehr */ transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
 #sidebar.sidebar-open { transform: translateX(0); }
-#sidebar nav h3 { padding: 15px 20px; margin: 0; color: #333; border-bottom: 1px solid var(--border-color); font-size: 1.1em; }
+#sidebar nav h3 { padding: 15px 20px; margin: 0; color: #333; border-bottom: 1px solid var(--border-color); font-size: 1.1em; background-color: var(--dark-bg); position: sticky; top: 0; z-index: 1; /* Bleibt beim Scrollen oben */}
 #sidebar nav ul { list-style: none; padding: 0; margin: 0; }
-#sidebar nav ul li a { display: block; padding: 10px 20px; text-decoration: none; color: var(--primary-color); transition: background-color 0.2s ease; border-bottom: 1px solid #eee; font-size: 0.95em; }
+#sidebar nav ul li a { display: block; padding: 10px 20px 10px 30px; /* Mehr Einzug für Unterpunkte */ text-decoration: none; color: var(--link-color); transition: background-color 0.2s ease; border-bottom: 1px solid #eee; font-size: 0.95em; }
 #sidebar nav ul li a:hover { background-color: var(--dark-bg); }
-#sidebar nav ul li strong a { /* Hauptteil-Links */ font-weight: bold; color: var(--text-color); background-color: var(--dark-bg); font-size: 1em; }
+/* Hauptteil-Links in Sidebar hervorheben */
+#sidebar nav ul li strong a {
+    padding: 12px 20px;
+    font-weight: bold;
+    color: var(--text-color);
+    background-color: var(--dark-bg);
+    font-size: 1em;
+}
+/* Farbliche Akzente für Hauptteil-Links (optional) */
+#sidebar nav ul li strong a[href="#teil1"] { border-left: 5px solid var(--part1-primary); padding-left: 15px; }
+#sidebar nav ul li strong a[href="#teil2"] { border-left: 5px solid var(--part2-primary); padding-left: 15px; }
+#sidebar nav ul li strong a[href="#teil3"] { border-left: 5px solid var(--part3-primary); padding-left: 15px; }
+/* Unterpunkte etwas weniger prominent */
+#sidebar nav ul li a:not([href^="#teil"]) { /* Wählt Links, die NICHT mit #teil beginnen */
+     color: #444;
+     padding-left: 40px; /* Noch mehr Einzug */
+     font-size: 0.9em;
+ }
+ #sidebar nav ul li a:not([href^="#teil"]):hover {
+     background-color: #f0f0f0;
+ }
 
 /* Menu Toggle Button */
-#menu-toggle { position: fixed; top: 15px; left: 15px; z-index: 1001; background-color: var(--medium-bg); border: 1px solid #ccc; padding: 8px 12px; cursor: pointer; font-size: 1.3em; border-radius: 4px; transition: left 0.3s ease-in-out, background-color 0.2s ease; }
+#menu-toggle { position: fixed; top: 10px; left: 10px; z-index: 1001; background-color: var(--light-bg); border: 1px solid #ccc; padding: 6px 10px; cursor: pointer; font-size: 1.4em; border-radius: 4px; transition: left 0.3s ease-in-out, background-color 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 #menu-toggle:hover { background-color: var(--dark-bg); }
 
 /* Overlay */
 #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 999; display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
 #overlay.active { display: block; opacity: 1; }
 
-/* Ausklappbare Abschnitte */
-.collapsible-header { cursor: pointer; position: relative; padding-right: 30px; transition: background-color 0.2s ease; user-select: none; /* Verhindert Textauswahl beim Klicken */ }
-.collapsible-header:hover { background-color: #f0f0f0; }
-.collapsible-header::after { content: '+'; color: var(--secondary-color); font-weight: bold; position: absolute; right: 10px; top: 50%; transform: translateY(-50%) scale(1.2); transition: transform 0.2s ease-out; }
-.collapsible-header.active::after { content: "–"; /* Minus statt Strich */ transform: translateY(-50%) scale(1.2) rotate(0deg); }
+/* Ausklappbare Abschnitte (Styles werden nicht mehr aktiv genutzt, aber hier belassen) */
+.collapsible-header { /* ... */ }
+.collapsible-header::after { /* ... */ }
+.collapsible-header.active::after { /* ... */ }
+.section-content { /* max-height etc. nicht mehr relevant */ padding: 10px 18px; /* Padding wird jetzt immer angewendet */}
+.nested-collapsible { /* ... */ }
+.nested-collapsible + .collapsible-content { /* ... */ }
 
-.section-content { padding: 0 18px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out, border 0.4s ease-out; border-bottom: 0px solid transparent; /* Initial keine Border */ }
-.section-content.open { padding: 15px 18px; /* Mehr Padding */ border-bottom: 1px dashed var(--border-color); /* Border wenn offen */ /* max-height wird durch JS gesetzt */ }
-
-.nested-collapsible { /* ... wie vorher ... */ }
-.nested-collapsible + .collapsible-content { /* ... wie vorher ... */ }
-.plotly-chart { width: 100%; min-height: 400px; margin: 1.5em 0; }
+/* Plotly Chart Container */
+.plotly-chart { width: 100%; min-height: 400px; margin: 1.5em 0; border: 1px solid var(--border-color); border-radius: 4px; }
 
 /* Responsive Design */
-@media (min-width: 900px) { /* Breiterer Schwellenwert für Push */
+@media (min-width: 900px) {
     body.sidebar-active { margin-left: 280px; }
-    main.sidebar-active { margin-left: calc(50% - 425px + 140px); } /* Zentrierung anpassen */
-    #menu-toggle.sidebar-active { left: calc(15px + 280px); }
+    main { padding-left: 2em; } /* Reset padding for non-active state */
+    main.sidebar-active { margin-left: calc(50% - 425px + 140px); }
+    #menu-toggle.sidebar-active { left: calc(10px + 280px); }
     #overlay { display: none !important; }
 }
 
 @media (max-width: 899px) {
     main { padding-left: 1em; width: auto; max-width: none; margin: 1em auto; }
     #sidebar.sidebar-open { box-shadow: 3px 0 6px rgba(0,0,0,0.2); }
-    .plotly-chart { min-height: 350px; } /* Etwas kleiner auf Mobile */
+    .plotly-chart { min-height: 350px; }
+    h1 { font-size: 1.8em;}
+    h2 { font-size: 1.4em;}
+    h3 { font-size: 1.2em;}
 }
